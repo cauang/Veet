@@ -1,0 +1,30 @@
+# Godot 4
+.godot/
+*.translation
+export_presets.cfg
+*.import~
+
+# Exportacoes
+build/
+exports/
+
+# Saves locais de teste
+saves/*
+!saves/.gitkeep
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Editores
+.idea/
+.vscode/
+
+# Fontes pesadas de arte (manter so se necessario)
+# *.aseprite
+
+# Documentacao: so o GDD e a Narrativa vao para o git
+docs/*
+!docs/GDD.docx
+!docs/Narrativa.docx
+!docs/.gdignore
