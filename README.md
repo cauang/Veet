@@ -60,6 +60,5 @@ RPG de batalha por turnos estilo Undertale em que o jogador, um residente de Med
 ## Primeiros passos no Godot
 
 1. Abrir o Godot 4 e **importar** esta pasta como projeto (ela vira a raiz do projeto).
-2. Em *Project Settings → Display → Window*: viewport **640 × 360**, stretch mode **viewport**, scale mode **integer**.
-3. Em *Project Settings → Rendering → Textures*: filtro padrão **Nearest**.
-4. As pastas `docs/` e `tools/` já têm `.gdignore`, então o Godot não as importa.
+2. A configuração de pixel art já está em `project.godot`: viewport **640 × 360** (janela de 1280 × 720 no desenvolvimento), stretch mode **viewport**, aspect **keep**, scale mode **integer** e filtro de textura padrão **Nearest**. Em tela cheia, o jogo é ampliado em escala inteira (2×, 3×, 4×...), com barras pretas quando a proporção da tela não for 16:9.
+3. As pastas `docs/` e `tools/` já têm `.gdignore`, então o Godot não as importa.
