@@ -57,13 +57,23 @@ def cor_do_fundo(arr):
     return np.median(borda, axis=0)
 
 
-def mascara_fundo(arr, bolsos, tol):
-    """True onde é fundo: região parecida com o fundo ligada às bordas (e bolsos marcados)."""
+def mascara_fundo(arr, bolsos, tol, auto_bolsos=0):
+    """True onde é fundo: região parecida com o fundo ligada às bordas (e bolsos marcados).
+
+    Com auto_bolsos > 0, toda região de cor de fundo com pelo menos essa área (em
+    pixels) também é removida, mesmo cercada pelo desenho (ex.: dentro da curva do
+    rabo). Só é seguro quando o animal não tem partes da cor do fundo (o peito claro
+    do Fibonacci seria apagado).
+    """
     bg = cor_do_fundo(arr)
     parecido = (np.abs(arr.astype(int) - bg).sum(axis=2) <= tol)
-    rotulos, _ = ndimage.label(parecido)  # regiões conectadas de "cor de fundo"
+    rotulos, n = ndimage.label(parecido)  # regiões conectadas de "cor de fundo"
     h, w = parecido.shape
     fundo = np.zeros_like(parecido)
+    if auto_bolsos:
+        areas = ndimage.sum(parecido, rotulos, range(1, n + 1))
+        grandes = np.where(areas >= auto_bolsos)[0] + 1
+        fundo |= np.isin(rotulos, grandes)
     for x, y in [(0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1)] + bolsos:
         r = rotulos[y, x]
         if r:
@@ -90,6 +100,9 @@ def main():
     p.add_argument("--margem", type=int, default=4)
     p.add_argument("--cores", type=int, default=0, help="reduz a uma paleta de N cores; 0 (padrão) mantém as cores fiéis")
     p.add_argument("--tol", type=int, default=34, help="tolerância do fundo (soma RGB)")
+    p.add_argument("--auto-bolsos", type=int, default=0, metavar="AREA",
+                   help="remove sozinho o fundo cercado pelo desenho, em regiões de pelo menos AREA pixels "
+                        "(ex.: 600). Não use se o animal tiver partes da cor do fundo")
     p.add_argument("--folha", help="salva uma folha de contato (conferência visual)")
     a = p.parse_args()
 
@@ -104,7 +117,7 @@ def main():
     for arq, nome in pares:
         origem = Image.open(os.path.join(a.entrada, arq)).convert("RGB")
         arr = np.array(origem)
-        fundo = mascara_fundo(arr, bolsos.get(arq, []), a.tol)
+        fundo = mascara_fundo(arr, bolsos.get(arq, []), a.tol, a.auto_bolsos)
         arr = arr.copy()
         arr[fundo] = CONTORNO  # franja escura em vez de cinza claro
         alfa = (~fundo * 255).astype("uint8")
