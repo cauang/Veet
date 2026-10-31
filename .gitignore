@@ -31,3 +31,6 @@ docs/*
 
 # Exportacao Android do Godot
 /android/
+
+# Scripts de apoio para tratar imagens: ficam so na maquina local
+tools/

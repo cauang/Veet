@@ -26,7 +26,7 @@ RPG de batalha por turnos estilo Undertale em que o jogador, um residente de Med
 | `shaders/` | Shaders `.gdshader` (brilho, distorção, dessaturação) |
 | `resources/` | Recursos reutilizáveis do Godot (`.tres`: temas, estilos) |
 | `saves/` | Saves locais de teste (não vão para o git) |
-| `tools/` | Scripts auxiliares fora do jogo (ex.: `pixelfy.py`) |
+| `tools/` | Scripts de apoio para tratar imagens de IA (existem só na máquina de quem os criou e ficam fora do git) |
 | `docs/` | Documentação do projeto |
 
 ### `assets/`
