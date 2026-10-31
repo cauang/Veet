@@ -28,3 +28,6 @@ docs/*
 !docs/GDD.docx
 !docs/Narrativa.docx
 !docs/.gdignore
+
+# Exportacao Android do Godot
+/android/
