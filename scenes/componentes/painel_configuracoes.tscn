@@ -1,0 +1,136 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Theme" id="1_theme" path="res://resources/tema_ui.tres"]
+[ext_resource type="Script" id="2_script" path="res://scripts/componentes/painel_configuracoes.gd"]
+
+[node name="PainelConfiguracoes" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_theme")
+script = ExtResource("2_script")
+
+[node name="FundoEscurecido" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.65)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(640, 420)
+
+[node name="Margem" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/Margem"]
+theme_override_constants/separation = 10
+
+[node name="LabelTitulo" type="Label" parent="CenterContainer/PanelContainer/Margem/VBoxContainer"]
+theme_override_font_sizes/font_size = 24
+text = "Configuracoes"
+
+[node name="TabContainer" type="TabContainer" parent="CenterContainer/PanelContainer/Margem/VBoxContainer"]
+size_flags_vertical = 3
+
+[node name="Audio" type="VBoxContainer" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer"]
+theme_override_constants/separation = 6
+
+[node name="GridAudio" type="GridContainer" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Audio"]
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 4
+columns = 2
+
+[node name="LabelMaster" type="Label" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Audio/GridAudio"]
+custom_minimum_size = Vector2(90, 0)
+text = "Master"
+
+[node name="SliderMaster" type="HSlider" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Audio/GridAudio"]
+unique_name_in_owner = true
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="LabelMusica" type="Label" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Audio/GridAudio"]
+custom_minimum_size = Vector2(90, 0)
+text = "Musica"
+
+[node name="SliderMusica" type="HSlider" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Audio/GridAudio"]
+unique_name_in_owner = true
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 1.0
+step = 0.05
+value = 0.7
+
+[node name="LabelEfeitos" type="Label" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Audio/GridAudio"]
+custom_minimum_size = Vector2(90, 0)
+text = "Efeitos"
+
+[node name="SliderSfx" type="HSlider" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Audio/GridAudio"]
+unique_name_in_owner = true
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="CheckMudo" type="CheckButton" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Audio"]
+unique_name_in_owner = true
+text = "Mudo"
+
+[node name="Video" type="VBoxContainer" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer"]
+theme_override_constants/separation = 6
+
+[node name="CheckTelaCheia" type="CheckButton" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Video"]
+unique_name_in_owner = true
+text = "Tela cheia"
+
+[node name="CheckVSync" type="CheckButton" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Video"]
+unique_name_in_owner = true
+text = "V-Sync"
+
+[node name="LabelResolucao" type="Label" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Video"]
+text = "Resolucao"
+
+[node name="OptionResolucao" type="OptionButton" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Video"]
+unique_name_in_owner = true
+size_flags_horizontal = 3
+
+[node name="Idioma" type="VBoxContainer" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer"]
+theme_override_constants/separation = 6
+
+[node name="LabelIdioma" type="Label" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Idioma"]
+text = "Idioma do jogo"
+
+[node name="OptionIdioma" type="OptionButton" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Idioma"]
+unique_name_in_owner = true
+size_flags_horizontal = 3
+
+[node name="HBoxBotoes" type="HBoxContainer" parent="CenterContainer/PanelContainer/Margem/VBoxContainer"]
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="BtnPadroes" type="Button" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/HBoxBotoes"]
+unique_name_in_owner = true
+text = "Padroes"
+
+[node name="BtnVoltar" type="Button" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/HBoxBotoes"]
+unique_name_in_owner = true
+text = "Voltar"
+
+[node name="BtnAplicar" type="Button" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/HBoxBotoes"]
+unique_name_in_owner = true
+text = "Aplicar"

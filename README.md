@@ -4,7 +4,8 @@ RPG de batalha por turnos estilo Undertale em que o jogador, um residente de Med
 
 - **Motor:** Godot 4 (2D, GDScript)
 - **Plataforma:** PC (Windows / Linux / macOS)
-- **Resolução-base:** 640 × 360, ampliada em escala inteira, filtro Nearest
+- **Resolução-base do mundo:** 640 × 360 em `SubViewport` com escala inteira e filtro Nearest
+- **Interface:** renderizada na resolução nativa da janela (texto nítido, sem pixelização)
 
 ## Documentação (`docs/`)
 
@@ -60,5 +61,5 @@ RPG de batalha por turnos estilo Undertale em que o jogador, um residente de Med
 ## Primeiros passos no Godot
 
 1. Abrir o Godot 4 e **importar** esta pasta como projeto (ela vira a raiz do projeto).
-2. A configuração de pixel art já está em `project.godot`: viewport **640 × 360** (janela de 1280 × 720 no desenvolvimento), stretch mode **viewport**, aspect **keep**, scale mode **integer** e filtro de textura padrão **Nearest**. Em tela cheia, o jogo é ampliado em escala inteira (2×, 3×, 4×...), com barras pretas quando a proporção da tela não for 16:9.
+2. O projeto está configurado com `window/stretch/mode = "disabled"` e janela inicial de **1280 × 720**: a interface é desenhada na resolução nativa do monitor, então textos e botões ficam nítidos em qualquer tamanho de janela. O filtro de textura padrão continua **Nearest** para a pixel art. Quando o mundo do jogo for implementado, ele deve ser desenhado em um `SubViewport` de **640 × 360** com escala inteira, preservando a estética pixel art sem pixelizar a interface.
 3. As pastas `docs/` e `tools/` já têm `.gdignore`, então o Godot não as importa.
