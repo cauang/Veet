@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Theme" id="1_theme" path="res://resources/tema_ui.tres"]
+[ext_resource type="PackedScene" id="2_painel" path="res://scenes/componentes/painel_configuracoes.tscn"]
+[ext_resource type="Script" id="3_script" path="res://scripts/home/tela_home.gd"]
+
+[node name="TelaHome" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_theme")
+script = ExtResource("3_script")
+
+[node name="Fundo" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09, 0.11, 0.14, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContainerCentral" type="VBoxContainer" parent="CenterContainer"]
+theme_override_constants/separation = 16
+
+[node name="BtnJogar" type="Button" parent="CenterContainer/ContainerCentral"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 60)
+theme_override_font_sizes/font_size = 28
+text = "Jogar"
+
+[node name="BtnConfiguracoes" type="Button" parent="CenterContainer/ContainerCentral"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 52)
+theme_override_font_sizes/font_size = 18
+text = "Configuracoes"
+
+[node name="BtnFecharJogo" type="Button" parent="CenterContainer/ContainerCentral"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 52)
+theme_override_font_sizes/font_size = 18
+text = "Fechar Jogo"
+
+[node name="PainelConfiguracoes" parent="." instance=ExtResource("2_painel")]
+unique_name_in_owner = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConfirmacaoFechar" type="ConfirmationDialog" parent="."]
+unique_name_in_owner = true
+title = "Fechar Jogo"
+dialog_text = "Tem certeza que deseja sair do jogo?"
+ok_button_text = "Sim, fechar"
+cancel_button_text = "Cancelar"
