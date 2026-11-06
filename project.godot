@@ -18,11 +18,14 @@ config/icon="res://icon.svg"
 [autoload]
 
 GerenciadorConfiguracoes="res://scripts/nucleo/gerenciador_configuracoes.gd"
+GerenciadorAudio="res://scripts/nucleo/gerenciador_audio.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=2
+window/stretch/mode="canvas_items"
 
 [physics]
 
@@ -32,3 +35,4 @@ window/size/viewport_height=720
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+environment/defaults/default_clear_color=Color(0.04, 0.055, 0.075, 1)

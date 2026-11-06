@@ -4,7 +4,11 @@ signal configuracoes_alteradas()
 
 const CAMINHO_SALVO := "user://settings.json"
 
+# Versao do arquivo de configuracoes. Se o arquivo salvo for mais antigo, o video volta ao automatico.
+const VERSAO_CONFIG := 2
+
 const PADROES := {
+	"versao": VERSAO_CONFIG,
 	"audio": {
 		"master": 0.8,
 		"musica": 0.7,
@@ -14,8 +18,8 @@ const PADROES := {
 	"video": {
 		"tela_cheia": false,
 		"vsync": true,
-		"largura": 1280,
-		"altura": 720,
+		"largura": 0, # 0 = automatico: a janela abre maximizada e se adapta a tela
+		"altura": 0,
 	},
 	"idioma": "pt_br",
 }
@@ -44,6 +48,21 @@ func _carregar() -> void:
 	var dados: Variant = JSON.parse_string(texto)
 	if dados is Dictionary:
 		configuracoes = dados
+		_migrar()
+
+
+func _migrar() -> void:
+	var salva: Variant = config_get("versao")
+	var versao := 0
+	if salva != null:
+		versao = int(salva)
+	if versao >= VERSAO_CONFIG:
+		return
+
+	# Arquivos antigos guardavam 1280x720 fixo; agora o padrao e se adaptar a tela.
+	config_set("video.largura", 0)
+	config_set("video.altura", 0)
+	config_set("versao", VERSAO_CONFIG)
 
 
 func salvar() -> void:
@@ -119,12 +138,25 @@ func aplicar_video() -> void:
 	if tela_cheia:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		var largura := int(config_get("video.largura"))
 		var altura := int(config_get("video.altura"))
-		DisplayServer.window_set_size(Vector2i(largura, altura))
+		if largura <= 0 or altura <= 0:
+			# Automatico: ocupa a area util da tela em que o jogo abriu.
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_size(Vector2i(largura, altura))
+			_centralizar_janela()
 
 	var modo_vsync := DisplayServer.VSYNC_DISABLED
 	if vsync:
 		modo_vsync = DisplayServer.VSYNC_ENABLED
 	DisplayServer.window_set_vsync_mode(modo_vsync)
+
+
+func _centralizar_janela() -> void:
+	var tela := DisplayServer.window_get_current_screen()
+	var origem := DisplayServer.screen_get_position(tela)
+	var area := DisplayServer.screen_get_usable_rect(tela)
+	var tamanho := DisplayServer.window_get_size()
+	DisplayServer.window_set_position(origem + (area.size - tamanho) / 2)

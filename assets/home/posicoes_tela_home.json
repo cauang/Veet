@@ -1,0 +1,223 @@
+{
+ "base": "640x360",
+ "nota": "x,y,largura,altura em pixels da resolucao-base 640x360. Sprites de CSS foram exportados em 3x (1920x1080). Sprites de canvas (planta, fio_de_la, novelo*) estao em 1 pixel por celula.",
+ "sprites": {
+  "background/parede.png": {
+   "x": 0,
+   "y": 0,
+   "largura": 640,
+   "altura": 223.3,
+   "px": "1920x670"
+  },
+  "background/teto.png": {
+   "x": 0,
+   "y": 0,
+   "largura": 640,
+   "altura": 16.3,
+   "px": "1920x49"
+  },
+  "background/rodape_azulejo.png": {
+   "x": 0,
+   "y": 165.7,
+   "largura": 640,
+   "altura": 57.7,
+   "px": "1920x173"
+  },
+  "background/rodape_escuro.png": {
+   "x": 0,
+   "y": 221,
+   "largura": 640,
+   "altura": 7.7,
+   "px": "1920x23"
+  },
+  "background/piso.png": {
+   "x": 0,
+   "y": 223.3,
+   "largura": 640,
+   "altura": 136.7,
+   "px": "1920x410"
+  },
+  "background/luminaria.png": {
+   "x": 64.3,
+   "y": 0.7,
+   "largura": 153,
+   "altura": 161.7,
+   "px": "459x485"
+  },
+  "background/janela.png": {
+   "x": 22.3,
+   "y": 29,
+   "largura": 102.7,
+   "altura": 96.3,
+   "px": "308x289"
+  },
+  "background/peitoril.png": {
+   "x": 19.3,
+   "y": 130.7,
+   "largura": 108.7,
+   "altura": 10.3,
+   "px": "326x31"
+  },
+  "background/cruz_verde.png": {
+   "x": 300.7,
+   "y": 15.7,
+   "largura": 38.7,
+   "altura": 38.3,
+   "px": "116x115"
+  },
+  "background/relogio.png": {
+   "x": 456.3,
+   "y": 30.3,
+   "largura": 38.3,
+   "altura": 38.7,
+   "px": "115x116"
+  },
+  "background/poster_anatomia.png": {
+   "x": 537.7,
+   "y": 28.7,
+   "largura": 73.7,
+   "altura": 102.7,
+   "px": "221x308"
+  },
+  "background/prateleira_frascos.png": {
+   "x": 486.3,
+   "y": 109,
+   "largura": 128,
+   "altura": 33.3,
+   "px": "384x100"
+  },
+  "background/monitor_ecg.png": {
+   "x": 128.3,
+   "y": 26.7,
+   "largura": 69.7,
+   "altura": 54.7,
+   "px": "209x164"
+  },
+  "background/suporte_soro.png": {
+   "x": 594,
+   "y": 145.3,
+   "largura": 46,
+   "altura": 202.7,
+   "px": "138x608"
+  },
+  "background/vinheta.png": {
+   "x": 0,
+   "y": 0,
+   "largura": 640,
+   "altura": 360,
+   "px": "1920x1080"
+  },
+  "background/fundo_ambulatorio_base.png": {
+   "x": 0,
+   "y": 0,
+   "largura": 640,
+   "altura": 360,
+   "px": "1920x1080"
+  },
+  "background/fundo_ambulatorio_completo.png": {
+   "x": 0,
+   "y": 0,
+   "largura": 640,
+   "altura": 360,
+   "px": "1920x1080"
+  },
+  "logo/veet_letras.png": {
+   "x": 189,
+   "y": 49.3,
+   "largura": 262.3,
+   "altura": 66.3,
+   "px": "787x199"
+  },
+  "logo/letra_v.png": {
+   "x": 189,
+   "y": 49.3,
+   "largura": 66.7,
+   "altura": 66.3,
+   "px": "200x199"
+  },
+  "logo/letra_e.png": {
+   "x": 254.3,
+   "y": 49.3,
+   "largura": 66.7,
+   "altura": 66.3,
+   "px": "200x199"
+  },
+  "logo/letra_t.png": {
+   "x": 392,
+   "y": 49.3,
+   "largura": 59.3,
+   "altura": 66.3,
+   "px": "178x199"
+  },
+  "logo/veet_logo_completo.png": {
+   "x": 167.7,
+   "y": 49.3,
+   "largura": 323,
+   "altura": 84.7,
+   "px": "969x254"
+  },
+  "logo/subtitulo_residencia_veterinaria.png": {
+   "x": 217.7,
+   "y": 130.3,
+   "largura": 203.3,
+   "altura": 8.7,
+   "px": "610x26"
+  },
+  "ui/botao_normal.png": {
+   "x": 233.3,
+   "y": 235.3,
+   "largura": 173,
+   "altura": 37.3,
+   "px": "519x112"
+  },
+  "ui/botao_selecionado.png": {
+   "x": 233.3,
+   "y": 235.3,
+   "largura": 173,
+   "altura": 37.3,
+   "px": "519x112"
+  },
+  "ui/botao_principal.png": {
+   "x": 233.3,
+   "y": 181.3,
+   "largura": 173,
+   "altura": 47.7,
+   "px": "519x143"
+  },
+  "ui/coracao_alma.png": {
+   "x": 33.3,
+   "y": 33.3,
+   "largura": 11.7,
+   "altura": 10.3,
+   "px": "35x31"
+  },
+  "fx/poeira.png": {
+   "x": 115.3,
+   "y": 223.3,
+   "largura": 3,
+   "altura": 3,
+   "px": "9x9"
+  },
+  "fx/scanlines.png": {
+   "x": 0,
+   "y": 3.3,
+   "largura": 640,
+   "altura": 353.7,
+   "px": "1920x1061"
+  },
+  "logo/capivara_studios_selo.png": {
+   "x": 252.7,
+   "y": 91,
+   "largura": 134.7,
+   "altura": 113.7,
+   "px": "404x341"
+  },
+  "logo/capivara_studios_vinheta.png": {
+   "x": 150.7,
+   "y": 91,
+   "largura": 336.3,
+   "altura": 177,
+   "px": "1009x531"
+  }
+ }
+}

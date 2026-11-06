@@ -1,136 +1,940 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://bd5kdsictp0xy"]
 
-[ext_resource type="Theme" id="1_theme" path="res://resources/tema_ui.tres"]
-[ext_resource type="Script" id="2_script" path="res://scripts/componentes/painel_configuracoes.gd"]
+[ext_resource type="Script" uid="uid://b3ykm24dcevxq" path="res://scripts/componentes/campo_selecao.gd" id="campo"]
+[ext_resource type="FontFile" uid="uid://ovqsb04oaml7" path="res://assets/fontes/PressStart2P-Regular.ttf" id="fonte"]
+[ext_resource type="Texture2D" uid="uid://bc3vvgcmai1b4" path="res://assets/home/ui/botao_normal.png" id="img_sb_n"]
+[ext_resource type="Texture2D" uid="uid://b7upglw1lgo8j" path="res://assets/home/ui/botao_principal.png" id="img_sb_p"]
+[ext_resource type="Texture2D" uid="uid://drwul8cq26wei" path="res://assets/home/ui/botao_principal_selecionado.png" id="img_sb_ps"]
+[ext_resource type="Texture2D" uid="uid://ymtmhg2pkua0" path="res://assets/home/ui/botao_selecionado.png" id="img_sb_s"]
+[ext_resource type="Script" uid="uid://du7vo4gap3h44" path="res://scripts/componentes/interruptor_madeira.gd" id="inter"]
+[ext_resource type="Script" uid="uid://bbjr5fpdbuxuv" path="res://scripts/componentes/linha_pontilhada.gd" id="linha"]
+[ext_resource type="Script" uid="uid://eblkj2godqf6" path="res://scripts/componentes/painel_configuracoes.gd" id="script"]
+[ext_resource type="Shader" uid="uid://he23yehu4yg7" path="res://shaders/fundo_esmaecido.gdshader" id="sh_fundo"]
+[ext_resource type="Script" uid="uid://b87kirhmw1g0r" path="res://scripts/componentes/slider_novelo.gd" id="slider"]
+[ext_resource type="Texture2D" uid="uid://co83hhvyi33fu" path="res://assets/animais/tigre/exportado/tigre_curado_sentado.png" id="t0"]
+[ext_resource type="Texture2D" uid="uid://bg1ii5rn2mm6s" path="res://assets/animais/fibonacci/exportado/fibonacci_curado_sentado.png" id="t1"]
+[ext_resource type="Texture2D" uid="uid://dkews8krdkuv0" path="res://assets/home/ui/prancheta_painel.png" id="t2"]
+[ext_resource type="Theme" uid="uid://bqyiqy1l10ysk" path="res://resources/tema_ui.tres" id="theme"]
 
-[node name="PainelConfiguracoes" type="Control"]
+[sub_resource type="ShaderMaterial" id="mat_fundo"]
+shader = ExtResource("sh_fundo")
+shader_parameter/desfoque = 1.6
+shader_parameter/escurecer = 0.45
+shader_parameter/vinheta = 0.3
+shader_parameter/tom = Color(0.16, 0.09, 0.05, 1)
+
+[sub_resource type="StyleBoxTexture" id="sb_n"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+texture = ExtResource("img_sb_n")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 9.0
+
+[sub_resource type="StyleBoxTexture" id="sb_s"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+texture = ExtResource("img_sb_s")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 9.0
+
+[sub_resource type="ButtonGroup" id="grupo"]
+
+[sub_resource type="StyleBoxTexture" id="sb_p"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+texture = ExtResource("img_sb_p")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 9.0
+
+[sub_resource type="StyleBoxTexture" id="sb_ps"]
+content_margin_left = 4.0
+content_margin_top = 2.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+texture = ExtResource("img_sb_ps")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 9.0
+
+[node name="PainelConfiguracoes" type="Control" unique_id=1580135894]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_theme")
-script = ExtResource("2_script")
+theme = ExtResource("theme")
+script = ExtResource("script")
 
-[node name="FundoEscurecido" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.65)
-
-[node name="CenterContainer" type="CenterContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
-custom_minimum_size = Vector2(640, 420)
-
-[node name="Margem" type="MarginContainer" parent="CenterContainer/PanelContainer"]
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/Margem"]
-theme_override_constants/separation = 10
-
-[node name="LabelTitulo" type="Label" parent="CenterContainer/PanelContainer/Margem/VBoxContainer"]
-theme_override_font_sizes/font_size = 24
-text = "Configuracoes"
-
-[node name="TabContainer" type="TabContainer" parent="CenterContainer/PanelContainer/Margem/VBoxContainer"]
-size_flags_vertical = 3
-
-[node name="Audio" type="VBoxContainer" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer"]
-theme_override_constants/separation = 6
-
-[node name="GridAudio" type="GridContainer" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Audio"]
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 4
-columns = 2
-
-[node name="LabelMaster" type="Label" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Audio/GridAudio"]
-custom_minimum_size = Vector2(90, 0)
-text = "Master"
-
-[node name="SliderMaster" type="HSlider" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Audio/GridAudio"]
+[node name="FundoEscurecido" type="ColorRect" parent="." unique_id=437776093]
 unique_name_in_owner = true
-size_flags_horizontal = 3
+material = SubResource("mat_fundo")
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Prancheta" type="Control" parent="." unique_id=710898768]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 320.0
+offset_top = 180.0
+offset_right = 960.0
+offset_bottom = 540.0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(320, 180)
+mouse_filter = 2
+
+[node name="PetTigre" type="TextureRect" parent="Prancheta" unique_id=1537895817]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 0
+offset_left = 173.0
+offset_top = 6.0
+offset_right = 250.0
+offset_bottom = 83.0
+mouse_filter = 2
+texture = ExtResource("t0")
+expand_mode = 1
+
+[node name="PetFibonacci" type="TextureRect" parent="Prancheta" unique_id=8716347]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 0
+offset_left = 390.0
+offset_top = 6.0
+offset_right = 467.0
+offset_bottom = 83.0
+mouse_filter = 2
+texture = ExtResource("t1")
+expand_mode = 1
+
+[node name="Tabuleiro" type="NinePatchRect" parent="Prancheta" unique_id=1561331074]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 47.0
+offset_right = 512.0
+offset_bottom = 309.0
+mouse_filter = 0
+texture = ExtResource("t2")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Titulo" type="Label" parent="Prancheta" unique_id=1750917513]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 56.0
+offset_right = 441.0
+offset_bottom = 76.0
+theme_override_colors/font_color = Color(0.227, 0.141, 0.082, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 16
+text = "CONFIGURAÇÕES"
+vertical_alignment = 1
+
+[node name="Subtitulo" type="Label" parent="Prancheta" unique_id=636353594]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 77.0
+offset_right = 471.0
+offset_bottom = 87.0
+theme_override_colors/font_color = Color(0.478, 0.353, 0.251, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+text = "PRONTUÁRIO DO RESIDENTE · UNIFOR"
+vertical_alignment = 1
+
+[node name="LinhaCabecalho" type="Control" parent="Prancheta" unique_id=1076980623]
+anchors_preset = 0
+offset_left = 141.0
+offset_top = 89.0
+offset_right = 499.0
+offset_bottom = 90.0
+mouse_filter = 2
+script = ExtResource("linha")
+cor = Color(0.77, 0.34, 0.31, 1)
+
+[node name="BtnAbaAudio" type="Button" parent="Prancheta" unique_id=1022607099]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 140.0
+offset_top = 97.0
+offset_right = 200.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(1, 0.953, 0.839, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("sb_n")
+theme_override_styles/pressed = SubResource("sb_s")
+theme_override_styles/hover = SubResource("sb_s")
+theme_override_styles/focus = SubResource("sb_s")
+toggle_mode = true
+button_group = SubResource("grupo")
+text = "ÁUDIO"
+
+[node name="BtnAbaVideo" type="Button" parent="Prancheta" unique_id=1740228428]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 204.0
+offset_top = 97.0
+offset_right = 264.0
+offset_bottom = 119.0
+theme_override_colors/font_color = Color(1, 0.953, 0.839, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("sb_n")
+theme_override_styles/pressed = SubResource("sb_s")
+theme_override_styles/hover = SubResource("sb_s")
+theme_override_styles/focus = SubResource("sb_s")
+toggle_mode = true
+button_group = SubResource("grupo")
+text = "VÍDEO"
+
+[node name="PaginaAudio" type="Control" parent="Prancheta" unique_id=883291308]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_top = 125.0
+offset_right = 640.0
+offset_bottom = 265.0
+
+[node name="RotMaster" type="Label" parent="Prancheta/PaginaAudio" unique_id=1085705574]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 13.0
+offset_right = 241.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.227, 0.141, 0.082, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+text = "GERAL"
+vertical_alignment = 1
+
+[node name="SliderMaster" type="Range" parent="Prancheta/PaginaAudio" unique_id=924784602]
+unique_name_in_owner = true
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+oversampling_with_scale = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+custom_minimum_size = Vector2(0, 0)
+custom_maximum_size = Vector2(-1, -1)
+propagate_maximum_size = false
+clip_contents = false
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 252.0
+offset_top = 7.0
+offset_right = 428.0
+offset_bottom = 29.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+offset_transform_enabled = false
+offset_transform_position = Vector2(0, 0)
+offset_transform_position_ratio = Vector2(0, 0)
+offset_transform_scale = Vector2(1, 1)
+offset_transform_rotation = 0.0
+offset_transform_pivot = Vector2(0, 0)
+offset_transform_pivot_ratio = Vector2(0.5, 0.5)
+offset_transform_visual_only = true
+localize_numeral_system = true
+layout_direction = 0
+translation_context = &""
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 0
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
 min_value = 0.0
 max_value = 1.0
 step = 0.05
+page = 0.0
 value = 0.8
+exp_edit = false
+rounded = false
+allow_greater = false
+allow_lesser = false
+script = ExtResource("slider")
 
-[node name="LabelMusica" type="Label" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Audio/GridAudio"]
-custom_minimum_size = Vector2(90, 0)
-text = "Musica"
-
-[node name="SliderMusica" type="HSlider" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Audio/GridAudio"]
+[node name="ValMaster" type="Label" parent="Prancheta/PaginaAudio" unique_id=1436226427]
 unique_name_in_owner = true
-size_flags_horizontal = 3
+layout_mode = 0
+offset_left = 436.0
+offset_top = 13.0
+offset_right = 500.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.227, 0.141, 0.082, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+text = "0%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SepMaster" type="Control" parent="Prancheta/PaginaAudio" unique_id=1011752388]
+anchors_preset = 0
+offset_left = 141.0
+offset_top = 35.0
+offset_right = 499.0
+offset_bottom = 36.0
+mouse_filter = 2
+script = ExtResource("linha")
+
+[node name="RotMusica" type="Label" parent="Prancheta/PaginaAudio" unique_id=996338022]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 47.0
+offset_right = 241.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0.227, 0.141, 0.082, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+text = "MÚSICA"
+vertical_alignment = 1
+
+[node name="SliderMusica" type="Range" parent="Prancheta/PaginaAudio" unique_id=1515362834]
+unique_name_in_owner = true
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+oversampling_with_scale = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+custom_minimum_size = Vector2(0, 0)
+custom_maximum_size = Vector2(-1, -1)
+propagate_maximum_size = false
+clip_contents = false
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 252.0
+offset_top = 41.0
+offset_right = 428.0
+offset_bottom = 63.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+offset_transform_enabled = false
+offset_transform_position = Vector2(0, 0)
+offset_transform_position_ratio = Vector2(0, 0)
+offset_transform_scale = Vector2(1, 1)
+offset_transform_rotation = 0.0
+offset_transform_pivot = Vector2(0, 0)
+offset_transform_pivot_ratio = Vector2(0.5, 0.5)
+offset_transform_visual_only = true
+localize_numeral_system = true
+layout_direction = 0
+translation_context = &""
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 0
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
 min_value = 0.0
 max_value = 1.0
 step = 0.05
+page = 0.0
 value = 0.7
+exp_edit = false
+rounded = false
+allow_greater = false
+allow_lesser = false
+script = ExtResource("slider")
 
-[node name="LabelEfeitos" type="Label" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Audio/GridAudio"]
-custom_minimum_size = Vector2(90, 0)
-text = "Efeitos"
-
-[node name="SliderSfx" type="HSlider" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Audio/GridAudio"]
+[node name="ValMusica" type="Label" parent="Prancheta/PaginaAudio" unique_id=1790108068]
 unique_name_in_owner = true
-size_flags_horizontal = 3
+layout_mode = 0
+offset_left = 436.0
+offset_top = 47.0
+offset_right = 500.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0.227, 0.141, 0.082, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+text = "0%"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SepMusica" type="Control" parent="Prancheta/PaginaAudio" unique_id=2012694179]
+anchors_preset = 0
+offset_left = 141.0
+offset_top = 69.0
+offset_right = 499.0
+offset_bottom = 70.0
+mouse_filter = 2
+script = ExtResource("linha")
+
+[node name="RotSfx" type="Label" parent="Prancheta/PaginaAudio" unique_id=330525641]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 81.0
+offset_right = 241.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(0.227, 0.141, 0.082, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+text = "EFEITOS"
+vertical_alignment = 1
+
+[node name="SliderSfx" type="Range" parent="Prancheta/PaginaAudio" unique_id=1431497836]
+unique_name_in_owner = true
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+oversampling_with_scale = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+custom_minimum_size = Vector2(0, 0)
+custom_maximum_size = Vector2(-1, -1)
+propagate_maximum_size = false
+clip_contents = false
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 252.0
+offset_top = 75.0
+offset_right = 428.0
+offset_bottom = 97.0
+grow_horizontal = 1
+grow_vertical = 1
+rotation = 0.0
+scale = Vector2(1, 1)
+pivot_offset = Vector2(0, 0)
+pivot_offset_ratio = Vector2(0, 0)
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+offset_transform_enabled = false
+offset_transform_position = Vector2(0, 0)
+offset_transform_position_ratio = Vector2(0, 0)
+offset_transform_scale = Vector2(1, 1)
+offset_transform_rotation = 0.0
+offset_transform_pivot = Vector2(0, 0)
+offset_transform_pivot_ratio = Vector2(0.5, 0.5)
+offset_transform_visual_only = true
+localize_numeral_system = true
+layout_direction = 0
+translation_context = &""
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 0
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
 min_value = 0.0
 max_value = 1.0
 step = 0.05
+page = 0.0
 value = 0.8
+exp_edit = false
+rounded = false
+allow_greater = false
+allow_lesser = false
+script = ExtResource("slider")
 
-[node name="CheckMudo" type="CheckButton" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Audio"]
+[node name="ValSfx" type="Label" parent="Prancheta/PaginaAudio" unique_id=1456725298]
 unique_name_in_owner = true
-text = "Mudo"
+layout_mode = 0
+offset_left = 436.0
+offset_top = 81.0
+offset_right = 500.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(0.227, 0.141, 0.082, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+text = "0%"
+horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="Video" type="VBoxContainer" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer"]
-theme_override_constants/separation = 6
+[node name="SepSfx" type="Control" parent="Prancheta/PaginaAudio" unique_id=1439105283]
+anchors_preset = 0
+offset_left = 141.0
+offset_top = 103.0
+offset_right = 499.0
+offset_bottom = 104.0
+mouse_filter = 2
+script = ExtResource("linha")
 
-[node name="CheckTelaCheia" type="CheckButton" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Video"]
+[node name="RotMudo" type="Label" parent="Prancheta/PaginaAudio" unique_id=519746282]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 115.0
+offset_right = 241.0
+offset_bottom = 125.0
+theme_override_colors/font_color = Color(0.227, 0.141, 0.082, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+text = "MUDO"
+vertical_alignment = 1
+
+[node name="CheckMudo" type="Button" parent="Prancheta/PaginaAudio" unique_id=338481804]
 unique_name_in_owner = true
-text = "Tela cheia"
+layout_mode = 0
+offset_left = 252.0
+offset_top = 113.0
+offset_right = 288.0
+offset_bottom = 129.0
+script = ExtResource("inter")
 
-[node name="CheckVSync" type="CheckButton" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Video"]
+[node name="ValMudo" type="Label" parent="Prancheta/PaginaAudio" unique_id=2043897800]
 unique_name_in_owner = true
-text = "V-Sync"
+layout_mode = 0
+offset_left = 424.0
+offset_top = 115.0
+offset_right = 500.0
+offset_bottom = 125.0
+theme_override_colors/font_color = Color(0.227, 0.141, 0.082, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+text = "DESLIGADO"
+horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="LabelResolucao" type="Label" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Video"]
-text = "Resolucao"
+[node name="SepMudo" type="Control" parent="Prancheta/PaginaAudio" unique_id=1905959844]
+anchors_preset = 0
+offset_left = 141.0
+offset_top = 137.0
+offset_right = 499.0
+offset_bottom = 138.0
+mouse_filter = 2
+script = ExtResource("linha")
 
-[node name="OptionResolucao" type="OptionButton" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Video"]
+[node name="PaginaVideo" type="Control" parent="Prancheta" unique_id=353246995]
 unique_name_in_owner = true
-size_flags_horizontal = 3
+visible = false
+anchors_preset = 0
+offset_top = 125.0
+offset_right = 640.0
+offset_bottom = 265.0
 
-[node name="Idioma" type="VBoxContainer" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer"]
-theme_override_constants/separation = 6
+[node name="RotTela" type="Label" parent="Prancheta/PaginaVideo" unique_id=817816929]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 13.0
+offset_right = 251.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.227, 0.141, 0.082, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+text = "TELA CHEIA"
+vertical_alignment = 1
 
-[node name="LabelIdioma" type="Label" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Idioma"]
-text = "Idioma do jogo"
-
-[node name="OptionIdioma" type="OptionButton" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/TabContainer/Idioma"]
+[node name="CheckTelaCheia" type="Button" parent="Prancheta/PaginaVideo" unique_id=2139162605]
 unique_name_in_owner = true
-size_flags_horizontal = 3
+layout_mode = 0
+offset_left = 252.0
+offset_top = 11.0
+offset_right = 288.0
+offset_bottom = 27.0
+script = ExtResource("inter")
 
-[node name="HBoxBotoes" type="HBoxContainer" parent="CenterContainer/PanelContainer/Margem/VBoxContainer"]
-theme_override_constants/separation = 8
-alignment = 2
-
-[node name="BtnPadroes" type="Button" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/HBoxBotoes"]
+[node name="ValTelaCheia" type="Label" parent="Prancheta/PaginaVideo" unique_id=26625034]
 unique_name_in_owner = true
-text = "Padroes"
+layout_mode = 0
+offset_left = 424.0
+offset_top = 13.0
+offset_right = 500.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.227, 0.141, 0.082, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+text = "DESLIGADO"
+horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="BtnVoltar" type="Button" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/HBoxBotoes"]
-unique_name_in_owner = true
-text = "Voltar"
+[node name="SepTela" type="Control" parent="Prancheta/PaginaVideo" unique_id=445971385]
+anchors_preset = 0
+offset_left = 141.0
+offset_top = 35.0
+offset_right = 499.0
+offset_bottom = 36.0
+mouse_filter = 2
+script = ExtResource("linha")
 
-[node name="BtnAplicar" type="Button" parent="CenterContainer/PanelContainer/Margem/VBoxContainer/HBoxBotoes"]
+[node name="RotVsync" type="Label" parent="Prancheta/PaginaVideo" unique_id=548730208]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 47.0
+offset_right = 251.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0.227, 0.141, 0.082, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+text = "V-SYNC"
+vertical_alignment = 1
+
+[node name="CheckVSync" type="Button" parent="Prancheta/PaginaVideo" unique_id=489075930]
 unique_name_in_owner = true
-text = "Aplicar"
+layout_mode = 0
+offset_left = 252.0
+offset_top = 45.0
+offset_right = 288.0
+offset_bottom = 61.0
+script = ExtResource("inter")
+
+[node name="ValVSync" type="Label" parent="Prancheta/PaginaVideo" unique_id=1747075656]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 424.0
+offset_top = 47.0
+offset_right = 500.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0.227, 0.141, 0.082, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+text = "DESLIGADO"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SepVsync" type="Control" parent="Prancheta/PaginaVideo" unique_id=1020415328]
+anchors_preset = 0
+offset_left = 141.0
+offset_top = 69.0
+offset_right = 499.0
+offset_bottom = 70.0
+mouse_filter = 2
+script = ExtResource("linha")
+
+[node name="RotRes" type="Label" parent="Prancheta/PaginaVideo" unique_id=264445031]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 81.0
+offset_right = 251.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(0.227, 0.141, 0.082, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+text = "RESOLUÇÃO"
+vertical_alignment = 1
+
+[node name="OptionResolucao" type="Control" parent="Prancheta/PaginaVideo" unique_id=1107125441]
+unique_name_in_owner = true
+z_index = 10
+anchors_preset = 0
+offset_left = 252.0
+offset_top = 74.0
+offset_right = 500.0
+offset_bottom = 98.0
+script = ExtResource("campo")
+
+[node name="Botao" type="Button" parent="Prancheta/PaginaVideo/OptionResolucao" unique_id=1583791752]
+layout_mode = 0
+offset_right = 248.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 0.953, 0.839, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("sb_n")
+theme_override_styles/pressed = SubResource("sb_s")
+theme_override_styles/hover = SubResource("sb_s")
+theme_override_styles/focus = SubResource("sb_s")
+text = "Automático"
+
+[node name="Lista" type="Control" parent="Prancheta/PaginaVideo/OptionResolucao" unique_id=1606162736]
+visible = false
+z_index = 10
+anchors_preset = 0
+offset_top = 25.0
+offset_right = 248.0
+offset_bottom = 65.0
+
+[node name="FundoLista" type="ColorRect" parent="Prancheta/PaginaVideo/OptionResolucao/Lista" unique_id=412681659]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 249.0
+offset_bottom = 41.0
+color = Color(0.18, 0.114, 0.075, 1)
+
+[node name="FundoLista2" type="ColorRect" parent="Prancheta/PaginaVideo/OptionResolucao/Lista" unique_id=935849847]
+layout_mode = 0
+offset_right = 248.0
+offset_bottom = 40.0
+color = Color(0.957, 0.914, 0.812, 1)
+
+[node name="Itens" type="VBoxContainer" parent="Prancheta/PaginaVideo/OptionResolucao/Lista" unique_id=359226178]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 248.0
+offset_bottom = 38.0
+theme_override_constants/separation = 0
+
+[node name="BtnPadroes" type="Button" parent="Prancheta" unique_id=232487061]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 140.0
+offset_top = 273.0
+offset_right = 212.0
+offset_bottom = 297.0
+theme_override_colors/font_color = Color(1, 0.953, 0.839, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("sb_n")
+theme_override_styles/pressed = SubResource("sb_s")
+theme_override_styles/hover = SubResource("sb_s")
+theme_override_styles/focus = SubResource("sb_s")
+text = "PADRÕES"
+
+[node name="BtnVoltar" type="Button" parent="Prancheta" unique_id=945783830]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 344.0
+offset_top = 273.0
+offset_right = 416.0
+offset_bottom = 297.0
+theme_override_colors/font_color = Color(1, 0.953, 0.839, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("sb_n")
+theme_override_styles/pressed = SubResource("sb_s")
+theme_override_styles/hover = SubResource("sb_s")
+theme_override_styles/focus = SubResource("sb_s")
+text = "VOLTAR"
+
+[node name="BtnAplicar" type="Button" parent="Prancheta" unique_id=63469667]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 424.0
+offset_top = 273.0
+offset_right = 504.0
+offset_bottom = 297.0
+theme_override_colors/font_color = Color(1, 0.953, 0.839, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("sb_p")
+theme_override_styles/pressed = SubResource("sb_ps")
+theme_override_styles/hover = SubResource("sb_ps")
+theme_override_styles/focus = SubResource("sb_ps")
+text = "APLICAR"
+
+[node name="Carimbo" type="Label" parent="Prancheta" unique_id=1217740430]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 364.0
+offset_top = 229.0
+offset_right = 504.0
+offset_bottom = 249.0
+rotation = -0.14
+pivot_offset = Vector2(70, 10)
+theme_override_colors/font_color = Color(0.77, 0.34, 0.31, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 16
+text = "APLICADO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NotaSombra" type="ColorRect" parent="Prancheta" unique_id=2066883392]
+layout_mode = 0
+offset_left = 522.0
+offset_top = 170.0
+offset_right = 614.0
+offset_bottom = 242.0
+rotation = 0.07
+mouse_filter = 2
+color = Color(0, 0, 0, 0.3)
+
+[node name="Nota" type="ColorRect" parent="Prancheta" unique_id=90479020]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 520.0
+offset_top = 167.0
+offset_right = 612.0
+offset_bottom = 239.0
+rotation = 0.07
+mouse_filter = 2
+color = Color(1, 0.886, 0.541, 1)
+
+[node name="Fita" type="ColorRect" parent="Prancheta/Nota" unique_id=715037580]
+layout_mode = 0
+offset_left = 36.0
+offset_top = -4.0
+offset_right = 58.0
+offset_bottom = 5.0
+rotation = -0.05
+mouse_filter = 2
+color = Color(1, 1, 1, 0.55)
+
+[node name="FitaBorda" type="ColorRect" parent="Prancheta/Nota" unique_id=1167563183]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 4.0
+offset_right = 58.0
+offset_bottom = 5.0
+rotation = -0.05
+mouse_filter = 2
+color = Color(0.8, 0.75, 0.6, 0.5)
+
+[node name="NotaTexto" type="Label" parent="Prancheta/Nota" unique_id=948734879]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 4.0
+offset_top = 5.0
+offset_right = 88.0
+offset_bottom = 67.0
+theme_override_colors/font_color = Color(0.353, 0.227, 0.102, 1)
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 8
+text = "DICA"
+vertical_alignment = 1
+autowrap_mode = 3
