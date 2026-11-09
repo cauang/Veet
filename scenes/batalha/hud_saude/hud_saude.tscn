@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://butgl3bm4ps6a"]
+
+[node name="HudSaude" type="Control" unique_id=583242767]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BarraVida" type="ProgressBar" parent="." unique_id=1247128333]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 230.0
+offset_bottom = 57.0
+max_value = 10.0
+value = 8.0
+show_percentage = false
+
+[node name="TextoSaude" type="Label" parent="." unique_id=1977152066]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

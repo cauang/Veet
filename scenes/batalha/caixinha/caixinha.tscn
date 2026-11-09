@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dehpkyb1v70d1"]
+
+[ext_resource type="Script" uid="uid://cds0bvamh3o11" path="res://scenes/batalha/caixinha/caixinha.gd" id="1_dmqkw"]
+[ext_resource type="Texture2D" uid="uid://cxbpgnsnagh1c" path="res://assets/patinha/patinha.png" id="2_uhodi"]
+[ext_resource type="PackedScene" uid="uid://butgl3bm4ps6a" path="res://scenes/batalha/hud_saude/hud_saude.tscn" id="3_uhodi"]
+
+[node name="Caixinha" type="Node2D" unique_id=1578684922]
+script = ExtResource("1_dmqkw")
+
+[node name="Caixa" type="ColorRect" parent="." unique_id=1841647566]
+offset_left = 365.0
+offset_top = 360.0
+offset_right = 915.0
+offset_bottom = 660.0
+color = Color(0.0325184, 0.009060923, 0.0018470905, 1)
+
+[node name="Patinha" type="Sprite2D" parent="." unique_id=577446792]
+position = Vector2(636, 507.99997)
+scale = Vector2(0.082, 0.08)
+texture = ExtResource("2_uhodi")
+
+[node name="HudSaude" parent="." unique_id=583242767 instance=ExtResource("3_uhodi")]
