@@ -1,0 +1,17 @@
+{
+	"id": "ziguezague",
+	"nome": "Zigue-zague",
+	"duracao": 10.0,
+	"emissoes": [
+		{
+			"tipo": "queda",
+			"intervalo": 0.75,
+			"intervalo_variacao": 0.2,
+			"velocidade": 165.0,
+			"velocidade_variacao": 20.0,
+			"posicao": [0.12, 0.88],
+			"oscilacao": 28.0,
+			"frequencia": 7.0
+		}
+	]
+}
