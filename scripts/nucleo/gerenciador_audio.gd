@@ -44,6 +44,7 @@ const SOM_SINO: AudioStream = preload("res://assets/audio/Sons/GatoETutor/sino-d
 const SOM_PIU: AudioStream = preload("res://assets/audio/sfx/piu_passarinho.wav")
 const SOM_PIU_PIU: AudioStream = preload("res://assets/audio/sfx/piu_piu_passarinho.wav")
 const SOM_CARIMBO: AudioStream = preload("res://assets/audio/sfx/carimbo_aplicado.wav")
+const SOM_ECG: AudioStream = preload("res://assets/audio/sfx/ecg_bip.wav")
 
 const TAMANHO_PISCINA := 10
 const VOLUME_MUSICA_DB := -14.0
@@ -175,6 +176,11 @@ func tick(valor: float) -> void:
 
 func carimbo() -> void:
 	tocar(SOM_CARIMBO, -1.0)
+
+
+## "Pi" do monitor cardiaco, no pico do batimento da abertura.
+func bip_ecg() -> void:
+	tocar(SOM_ECG, -5.0)
 
 
 # ------------------------------------------------------- voz, gatos e jingles

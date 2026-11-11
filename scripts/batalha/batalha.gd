@@ -61,6 +61,7 @@ var _tween_texto: Tween
 var _depois_do_texto := Callable()
 var _audio: Node
 var _estado_anterior := "neutro"
+var _confirmacao_saida: CaixaConfirmacao
 var _ultimo_caractere := 0
 var _estilo_normal: StyleBoxFlat
 var _estilo_sel: StyleBoxFlat
@@ -165,6 +166,8 @@ func _unhandled_input(evento: InputEvent) -> void:
 				_mover_menu((_indice_menu + 2) % ORDEM_ACOES.size())   # troca de linha
 			elif evento.is_action_pressed("ui_accept"):
 				_ativar_acao(ORDEM_ACOES[_indice_menu])
+			elif evento.is_action_pressed("ui_cancel"):
+				_pedir_saida()
 			else:
 				return
 		Estado.SUBMENU:
@@ -197,6 +200,15 @@ func _unhandled_input(evento: InputEvent) -> void:
 		_:
 			return
 	get_viewport().set_input_as_handled()
+
+
+## ESC no menu: pergunta se o jogador quer mesmo abandonar o caso.
+func _pedir_saida() -> void:
+	if _confirmacao_saida == null:
+		_confirmacao_saida = preload("res://scenes/componentes/caixa_confirmacao.tscn").instantiate()
+		add_child(_confirmacao_saida)
+		_confirmacao_saida.confirmado.connect(GerenciadorCenas.voltar_ao_menu)
+	_confirmacao_saida.perguntar("VOLTAR AO MENU", "O progresso deste caso será perdido.\nDeseja voltar ao menu principal?", "SIM, VOLTAR", "CONTINUAR")
 
 
 func _clique(evento: InputEvent) -> bool:

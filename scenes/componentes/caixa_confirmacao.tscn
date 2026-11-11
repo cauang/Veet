@@ -1,0 +1,108 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/componentes/caixa_confirmacao.gd" id="1_script"]
+[ext_resource type="FontFile" path="res://assets/fontes/PressStart2P-Regular.ttf" id="2_fonte"]
+
+[sub_resource type="Theme" id="Tema"]
+default_font = ExtResource("2_fonte")
+default_font_size = 14
+
+[sub_resource type="StyleBoxFlat" id="PainelEstilo"]
+bg_color = Color(0.02, 0.03, 0.05, 0.97)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.949, 0.839, 0.459, 1)
+shadow_color = Color(0, 0, 0, 0.55)
+shadow_size = 12
+shadow_offset = Vector2(0, 6)
+
+[sub_resource type="StyleBoxFlat" id="Faixa"]
+bg_color = Color(0.949, 0.839, 0.459, 1)
+
+[node name="CaixaConfirmacao" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Tema")
+script = ExtResource("1_script")
+
+[node name="Escuro" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.62)
+
+[node name="Painel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(640, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -130.0
+offset_right = 320.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("PainelEstilo")
+
+[node name="Margem" type="MarginContainer" parent="Painel"]
+layout_mode = 2
+theme_override_constants/margin_left = 34
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 34
+theme_override_constants/margin_bottom = 30
+
+[node name="Coluna" type="VBoxContainer" parent="Painel/Margem"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Titulo" type="Label" parent="Painel/Margem/Coluna"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.949, 0.839, 0.459, 1)
+theme_override_font_sizes/font_size = 22
+text = "CONFIRMAR"
+horizontal_alignment = 1
+
+[node name="Faixa" type="Panel" parent="Painel/Margem/Coluna"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+theme_override_styles/panel = SubResource("Faixa")
+
+[node name="Mensagem" type="Label" parent="Painel/Margem/Coluna"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_constants/line_spacing = 12
+text = "Tem certeza?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Botoes" type="HBoxContainer" parent="Painel/Margem/Coluna"]
+layout_mode = 2
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="BtnSim" type="Button" parent="Painel/Margem/Coluna/Botoes"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 48)
+layout_mode = 2
+text = "SIM"
+
+[node name="BtnNao" type="Button" parent="Painel/Margem/Coluna/Botoes"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(260, 48)
+layout_mode = 2
+text = "NÃO"

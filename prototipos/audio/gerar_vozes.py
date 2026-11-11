@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Gera os "blips" de voz dos personagens (estilo Undertale), sem dependencias.
+"""Gera os "blips" de voz dos personagens (estilo Undertale) e o bip do ECG, sem dependencias.
 
 Cada personagem tem um timbre proprio (altura e forma de onda). No jogo o blip
 toca a cada poucas letras do texto, com variacao aleatoria de tom, e basta para
@@ -64,6 +64,27 @@ def gerar(id_voz, freq, forma, dur, vibrato, volume):
     return caminho
 
 
+def gerar_bip_ecg():
+    """"Pi" do monitor cardiaco: tom puro de ~1 kHz, ataque instantaneo e queda curta."""
+    dur, freq = 0.16, 1000.0
+    n = int(TAXA * dur)
+    amostras = []
+    for i in range(n):
+        t = i / TAXA
+        ataque = min(1.0, i / (TAXA * 0.002))
+        queda = 1.0 if t < 0.07 else math.exp(-(t - 0.07) * 26.0)
+        v = math.sin(2 * math.pi * freq * t) * 0.9 + math.sin(2 * math.pi * freq * 2 * t) * 0.1
+        amostras.append(int(32767 * 0.5 * ataque * queda * v))
+    caminho = os.path.join(SAIDA, "ecg_bip.wav")
+    with wave.open(caminho, "wb") as w:
+        w.setnchannels(1)
+        w.setsampwidth(2)
+        w.setframerate(TAXA)
+        w.writeframes(b"".join(struct.pack("<h", a) for a in amostras))
+    return caminho
+
+
 if __name__ == "__main__":
     for nome, params in VOZES.items():
         print("OK ->", gerar(nome, *params))
+    print("OK ->", gerar_bip_ecg())
