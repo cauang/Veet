@@ -1,0 +1,17 @@
+{
+	"id": "rajada_diagonal",
+	"nome": "Rajada diagonal",
+	"duracao": 10.0,
+	"emissoes": [
+		{
+			"tipo": "diagonal",
+			"intervalo": 0.9,
+			"intervalo_variacao": 0.25,
+			"velocidade": 175.0,
+			"velocidade_variacao": 20.0,
+			"lado": "alternar",
+			"oscilacao": 0.0,
+			"frequencia": 0.0
+		}
+	]
+}

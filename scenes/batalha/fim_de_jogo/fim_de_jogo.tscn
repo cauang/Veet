@@ -1,0 +1,176 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/batalha/fim_de_jogo.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://ovqsb04oaml7" path="res://assets/fontes/PressStart2P-Regular.ttf" id="2_fonte"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_painel"]
+bg_color = Color(0.05, 0.04, 0.03, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.93, 0.78, 0.12, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_botao_normal"]
+content_margin_left = 18.0
+content_margin_top = 10.0
+content_margin_right = 18.0
+content_margin_bottom = 10.0
+bg_color = Color(0.13, 0.11, 0.09, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.75, 0.62, 0.16, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_botao_hover"]
+content_margin_left = 18.0
+content_margin_top = 10.0
+content_margin_right = 18.0
+content_margin_bottom = 10.0
+bg_color = Color(0.24, 0.2, 0.13, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.88, 0.3, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_botao_pressed"]
+content_margin_left = 18.0
+content_margin_top = 10.0
+content_margin_right = 18.0
+content_margin_bottom = 10.0
+bg_color = Color(0.09, 0.07, 0.05, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6, 0.5, 0.14, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_botao_foco"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.96, 0.8, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="Theme" id="Theme_fim_de_jogo"]
+default_font = ExtResource("2_fonte")
+default_font_size = 14
+Button/colors/font_color = Color(0.95, 0.89, 0.78, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 0.95, 0.75, 1)
+Button/colors/font_pressed_color = Color(0.75, 0.68, 0.52, 1)
+Button/font_sizes/font_size = 14
+Button/styles/focus = SubResource("StyleBoxFlat_botao_foco")
+Button/styles/hover = SubResource("StyleBoxFlat_botao_hover")
+Button/styles/normal = SubResource("StyleBoxFlat_botao_normal")
+Button/styles/pressed = SubResource("StyleBoxFlat_botao_pressed")
+Label/colors/font_color = Color(0.95, 0.89, 0.78, 1)
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_painel")
+
+[node name="CamadaFimDeJogo" type="CanvasLayer"]
+layer = 10
+
+[node name="FimDeJogo" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme = SubResource("Theme_fim_de_jogo")
+script = ExtResource("1_script")
+
+[node name="Fundo" type="ColorRect" parent="FimDeJogo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.72)
+
+[node name="Centro" type="CenterContainer" parent="FimDeJogo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Painel" type="PanelContainer" parent="FimDeJogo/Centro"]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+
+[node name="Margem" type="MarginContainer" parent="FimDeJogo/Centro/Painel"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 28
+
+[node name="Conteudo" type="VBoxContainer" parent="FimDeJogo/Centro/Painel/Margem"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Titulo" type="Label" parent="FimDeJogo/Centro/Painel/Margem/Conteudo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.87, 0.16, 0.09, 1)
+theme_override_font_sizes/font_size = 26
+text = "FIM DE JOGO"
+horizontal_alignment = 1
+
+[node name="Mensagem" type="Label" parent="FimDeJogo/Centro/Painel/Margem/Conteudo"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "O vínculo com o paciente se esgotou.
+O atendimento foi interrompido."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Espaco" type="Control" parent="FimDeJogo/Centro/Painel/Margem/Conteudo"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="BtnTentarNovamente" type="Button" parent="FimDeJogo/Centro/Painel/Margem/Conteudo"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "TENTAR NOVAMENTE"
+
+[node name="BtnVoltarMenu" type="Button" parent="FimDeJogo/Centro/Painel/Margem/Conteudo"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "VOLTAR AO MENU"
