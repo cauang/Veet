@@ -14,13 +14,14 @@ script = ExtResource("1_dmqkw")
 
 [node name="Caixa" type="ColorRect" parent="." unique_id=1841647566]
 offset_left = 365.0
-offset_top = 360.0
+offset_top = 276.0
 offset_right = 915.0
-offset_bottom = 660.0
+offset_bottom = 576.0
+clip_children = 2
 color = Color(0.0325184, 0.009060923, 0.0018470905, 1)
 
 [node name="Patinha" type="Sprite2D" parent="." unique_id=577446792]
-position = Vector2(636, 507.99997)
+position = Vector2(640, 426)
 scale = Vector2(0.082, 0.08)
 texture = ExtResource("2_uhodi")
 
@@ -31,7 +32,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Patinha/AreaPatinha" unique_id=12383894]
 shape = SubResource("CircleShape2D_h4t55")
 
-[node name="EmissorProjeteis" type="Node2D" parent="."]
+[node name="EmissorProjeteis" type="Node2D" parent="Caixa"]
 script = ExtResource("4_emissor")
 
 [node name="HudSaude" parent="." unique_id=583242767 instance=ExtResource("3_uhodi")]

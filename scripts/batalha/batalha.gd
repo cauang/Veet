@@ -34,7 +34,7 @@ const VELOCIDADE_TEXTO := 46.0
 @onready var caixinha = %Caixinha
 @onready var texto_caixa: Label = %TextoCaixa
 @onready var lista: VBoxContainer = %ListaOpcoes
-@onready var menu: HBoxContainer = %Menu
+@onready var menu: GridContainer = %Menu
 @onready var cursor: TextureRect = %Cursor
 @onready var barra_diagnostico: ProgressBar = %BarraDiagnostico
 @onready var barra_estresse: ProgressBar = %BarraEstresse
@@ -115,7 +115,7 @@ func _criar_menu() -> void:
 	for i in ORDEM_ACOES.size():
 		var b := Button.new()
 		b.text = ROTULOS[ORDEM_ACOES[i]]
-		b.custom_minimum_size = Vector2(270, 42)
+		b.custom_minimum_size = Vector2(267, 42)
 		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		b.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		b.focus_mode = Control.FOCUS_NONE
@@ -159,10 +159,10 @@ func _posicionar_cursor() -> void:
 func _unhandled_input(evento: InputEvent) -> void:
 	match estado:
 		Estado.MENU:
-			if evento.is_action_pressed("ui_left"):
-				_mover_menu(-1)
-			elif evento.is_action_pressed("ui_right"):
-				_mover_menu(1)
+			if evento.is_action_pressed("ui_left") or evento.is_action_pressed("ui_right"):
+				_mover_menu(_indice_menu ^ 1)       # troca de coluna na mesma linha
+			elif evento.is_action_pressed("ui_up") or evento.is_action_pressed("ui_down"):
+				_mover_menu((_indice_menu + 2) % ORDEM_ACOES.size())   # troca de linha
 			elif evento.is_action_pressed("ui_accept"):
 				_ativar_acao(ORDEM_ACOES[_indice_menu])
 			else:
@@ -216,8 +216,9 @@ func _on_botao_pressionado(i: int) -> void:
 		_ativar_acao(ORDEM_ACOES[i])
 
 
-func _mover_menu(passo: int) -> void:
-	_indice_menu = wrapi(_indice_menu + passo, 0, ORDEM_ACOES.size())
+## Menu em grade 2x2: [TRATAMENTO, ANALISAR] / [CARINHO, DIAGNOSTICO].
+func _mover_menu(novo_indice: int) -> void:
+	_indice_menu = novo_indice
 	_som("hover")
 	_marcar_menu()
 
@@ -334,6 +335,8 @@ func _escolher_opcao(opcao: Dictionary) -> void:
 			if not opcao.get("correto", false):
 				ganho = 0
 				erros += 1
+			elif opcao.get("conclui_caso", false):
+				ganho = 100 - progresso   # o tratamento certo fecha o caso, mesmo com a barra incompleta
 
 	_aplicar_efeitos(ganho, variacao_estresse)
 

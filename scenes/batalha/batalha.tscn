@@ -54,10 +54,10 @@ layout_mode = 1
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 0
-offset_left = 440.0
-offset_top = 20.0
-offset_right = 840.0
-offset_bottom = 340.0
+offset_left = 480.0
+offset_top = 8.0
+offset_right = 800.0
+offset_bottom = 268.0
 mouse_filter = 2
 texture = ExtResource("6_gato")
 expand_mode = 1
@@ -70,9 +70,9 @@ iniciar_automatico = false
 [node name="Moldura" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_left = 361.0
-offset_top = 356.0
+offset_top = 272.0
 offset_right = 919.0
-offset_bottom = 664.0
+offset_bottom = 580.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("Moldura")
 
@@ -99,14 +99,16 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 16
 
-[node name="Menu" type="HBoxContainer" parent="."]
+[node name="Menu" type="GridContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 70.0
-offset_top = 672.0
-offset_right = 1210.0
-offset_bottom = 714.0
-theme_override_constants/separation = 20
+offset_left = 365.0
+offset_top = 598.0
+offset_right = 915.0
+offset_bottom = 694.0
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 12
+columns = 2
 
 [node name="Cursor" type="TextureRect" parent="."]
 unique_name_in_owner = true

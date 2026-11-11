@@ -19,7 +19,7 @@ signal vida_zerada()
 @onready var patinha: Sprite2D = $Patinha
 @onready var area_patinha: Area2D = $Patinha/AreaPatinha
 @onready var hud_saude = $HudSaude
-@onready var emissor = $EmissorProjeteis
+@onready var emissor = $Caixa/EmissorProjeteis
 @onready var fim_de_jogo = $CamadaFimDeJogo/FimDeJogo
 
 var _limites := Rect2()
@@ -32,7 +32,7 @@ var _tween_piscar: Tween
 func _ready() -> void:
 	_limites = Rect2(caixa.position, caixa.size)
 	if _limites.size.x <= 0.0 or _limites.size.y <= 0.0:
-		_limites = Rect2(365.0, 360.0, 550.0, 300.0)
+		_limites = Rect2(365.0, 276.0, 550.0, 300.0)
 
 	if patinha.texture != null:
 		_metade_patinha = patinha.texture.get_size() * patinha.scale * 0.5

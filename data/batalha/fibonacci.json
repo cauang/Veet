@@ -57,7 +57,7 @@
       "requer_diagnostico": true,
       "texto_sem_diagnostico": "* Ainda não há um diagnóstico fechado.\n* Use DIAGNÓSTICO primeiro.",
       "opcoes": [
-        { "id": "radiografia", "rotulo": "Radiografia + remoção", "correto": true, "progresso": 20, "estresse": 0,
+        { "id": "radiografia", "rotulo": "Radiografia + remoção", "correto": true, "conclui_caso": true, "progresso": 20, "estresse": 0,
           "padrao": "ondas_dor", "duracao": 12, "intensidade": 1.25,
           "texto": "* Radiografia, remoção do corpo estranho e analgesia.\n* O tratamento deu certo!" },
         { "id": "antiemetico", "rotulo": "Só antiemético", "correto": false, "progresso": 0, "estresse": 2,

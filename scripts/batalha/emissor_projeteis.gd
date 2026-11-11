@@ -11,7 +11,9 @@ signal fase_terminou()
 
 const CENA_PROJETIL: PackedScene = preload("res://scenes/batalha/projeteis/projetil.tscn")
 const PASTA_PADROES := "res://data/padroes_ataque/"
-const MARGEM := 34.0
+## Distancia (fora da borda) onde o projetil nasce. Ele fica invisivel ate cruzar a
+## borda: a caixa corta (clip) tudo que estiver fora dela.
+const MARGEM := 14.0
 const POOL_PADRAO := 32
 
 @export var padroes: PackedStringArray = ["ondas_dor", "gotas_cistite", "ziguezague", "rajada_diagonal"]
@@ -39,7 +41,8 @@ func _ready() -> void:
 	_criar_pool()
 
 
-## A caixinha informa os limites da area de jogo antes de iniciar a fase.
+## A caixinha informa os limites da area de jogo (em coordenadas globais) antes de iniciar a fase.
+## Este no fica dentro da Caixa, que corta os projeteis fora dela.
 func definir_limites(area: Rect2) -> void:
 	_limites = area
 
@@ -51,7 +54,7 @@ func iniciar_fase(forcar_id := "", duracao := -1.0, intensidade := 1.0) -> void:
 		return
 
 	if _limites.size.x <= 0.0 or _limites.size.y <= 0.0:
-		_limites = Rect2(365.0, 360.0, 550.0, 300.0)
+		_limites = Rect2(365.0, 276.0, 550.0, 300.0)
 
 	if padroes.is_empty():
 		push_warning("EmissorProjeteis: nenhum padrao de ataque configurado.")
@@ -182,7 +185,7 @@ func _emitir(emissao: Dictionary) -> void:
 
 	var projetil := _pegar_projetil()
 	projetil.ativar(
-		to_global(origem),
+		origem,
 		direcao,
 		velocidade,
 		_tempo_de_travessia(direcao, velocidade),
@@ -241,8 +244,7 @@ func _tempo_de_travessia(direcao: Vector2, velocidade: float) -> float:
 
 
 func _retangulo_saida() -> Rect2:
-	var origem := to_global(_limites.position)
-	return Rect2(origem, _limites.size).grow(MARGEM + 12.0)
+	return Rect2(_limites.position, _limites.size).grow(MARGEM + 12.0)
 
 
 # ------------------------------------------------------------ dificuldade
