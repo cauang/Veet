@@ -1,12 +1,23 @@
-[gd_scene format=3 uid="uid://butgl3bm4ps6a"]
+[gd_scene load_steps=5 format=3 uid="uid://butgl3bm4ps6a"]
+
+[ext_resource type="Script" uid="uid://ccld4433ee0ti" path="res://scenes/batalha/hud_saude/hud_saude.gd" id="1_fctly"]
+[ext_resource type="FontFile" uid="uid://ovqsb04oaml7" path="res://assets/fontes/PressStart2P-Regular.ttf" id="2_2yt01"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51g3x"]
+bg_color = Color(0.867217, 0.10092927, 0.065902166, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5qhwg"]
+bg_color = Color(0.9298203, 0.77625245, 0.11949221, 1)
 
 [node name="HudSaude" type="Control" unique_id=583242767]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fctly")
 
 [node name="BarraVida" type="ProgressBar" parent="." unique_id=1247128333]
 layout_mode = 0
@@ -14,11 +25,45 @@ offset_left = 30.0
 offset_top = 30.0
 offset_right = 230.0
 offset_bottom = 57.0
+theme_override_styles/background = SubResource("StyleBoxFlat_51g3x")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5qhwg")
 max_value = 10.0
 value = 8.0
 show_percentage = false
 
 [node name="TextoSaude" type="Label" parent="." unique_id=1977152066]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 31.0
+offset_top = 12.0
+offset_right = 95.0
+offset_bottom = 35.0
+theme_override_fonts/font = ExtResource("2_2yt01")
+text = "Vida"
+
+[node name="TextoTempo" type="Label" parent="." unique_id=1977152067]
+layout_mode = 0
+offset_left = 1080.0
+offset_top = 18.0
+offset_right = 1250.0
+offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("2_2yt01")
+theme_override_font_sizes/font_size = 12
+text = "10.0s"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextoFase" type="Label" parent="."]
+layout_mode = 0
+offset_left = 365.0
+offset_top = 300.0
+offset_right = 915.0
+offset_bottom = 352.0
+theme_override_colors/font_color = Color(1, 0.95, 0.78, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_2yt01")
+theme_override_font_sizes/font_size = 12
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

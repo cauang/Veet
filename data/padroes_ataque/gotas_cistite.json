@@ -1,0 +1,17 @@
+{
+	"id": "gotas_cistite",
+	"nome": "Gotas irregulares",
+	"duracao": 10.0,
+	"emissoes": [
+		{
+			"tipo": "queda",
+			"intervalo": 0.55,
+			"intervalo_variacao": 0.45,
+			"velocidade": 220.0,
+			"velocidade_variacao": 45.0,
+			"posicao": [0.08, 0.92],
+			"oscilacao": 0.0,
+			"frequencia": 0.0
+		}
+	]
+}
