@@ -122,6 +122,16 @@ func _on_fase_terminou() -> void:
 	fase_sobrevivida.emit()
 	hud_saude.esconder_tempo()
 
+	# Dentro do fluxo do jogo, sobreviver a fase encerra a batalha e avanca.
+	# Rodando a cena solta (F6), ela repete a fase para testar a esquiva.
+	if GerenciadorCenas.em_fluxo():
+		hud_saude.mostrar_fase("Fase superada!", "")
+		await get_tree().create_timer(1.6).timeout
+		if _ativo:
+			_ativo = false
+			GerenciadorCenas.avancar()
+		return
+
 	if not repetir_fase:
 		return
 

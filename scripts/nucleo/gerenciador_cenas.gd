@@ -43,6 +43,11 @@ func _criar_cortina() -> void:
 	camada.add_child(_cortina)
 
 
+## true quando a cena atual foi aberta pelo fluxo do jogo (e nao rodando solta com F6).
+func em_fluxo() -> bool:
+	return etapa_atual >= 0
+
+
 ## Inicia o fluxo principal (chamado pelo botao JOGAR da Home).
 ## `cortina_ja_fechada` = true quando a cena de origem ja escureceu a tela.
 func iniciar_jogo(cortina_ja_fechada := false) -> void:
