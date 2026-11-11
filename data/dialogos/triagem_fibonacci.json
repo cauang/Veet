@@ -1,0 +1,15 @@
+{
+  "id": "triagem_fibonacci",
+  "falas": [
+    { "quem": "euler", "nome": "", "expressao": "neutro", "anim": "idle", "sem_retrato": true,
+      "texto": "* O Prof. Euler entra com duas caixas de transporte." },
+    { "quem": "euler", "nome": "Prof. Euler", "expressao": "neutro", "anim": "falar",
+      "texto": "Boa noite, aluno. O módulo de comportamento do Fibonacci apresentou uma anomalia de eficiência nas últimas 24 horas." },
+    { "quem": "helena", "nome": "Dra. Helena", "expressao": "falando", "anim": "falar",
+      "texto": "Esse é o Prof. Euler, tutor do Fibonacci e do Sultão. Ouça o relato com atenção." },
+    { "quem": "euler", "nome": "Prof. Euler", "expressao": "falando", "anim": "falar",
+      "texto": "Ele reduziu a ingestão de ração em 75% e emite um sinal sonoro agudo quando aplico pressão no quadrante inferior." },
+    { "quem": "euler", "nome": "", "expressao": "neutro", "anim": "idle", "sem_retrato": true,
+      "texto": "* Dentro da caixa, Fibonacci encolhe as orelhas. A hora da verdade chegou." }
+  ]
+}

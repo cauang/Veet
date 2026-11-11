@@ -1,0 +1,37 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/introducao/introducao.gd" id="1_intro"]
+[ext_resource type="PackedScene" path="res://scenes/componentes/cenario_clinica.tscn" id="2_fundo"]
+[ext_resource type="PackedScene" path="res://scenes/personagens/personagem.tscn" id="3_personagem"]
+[ext_resource type="PackedScene" path="res://scenes/dialogo/caixa_dialogo.tscn" id="4_caixa"]
+
+[node name="Introducao" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_intro")
+
+[node name="Fundo" parent="." instance=ExtResource("2_fundo")]
+layout_mode = 1
+
+[node name="Palco" type="Node2D" parent="."]
+
+[node name="Protagonista" parent="Palco" instance=ExtResource("3_personagem")]
+unique_name_in_owner = true
+position = Vector2(380, 500)
+scale = Vector2(4, 4)
+id = "protagonista"
+
+[node name="Helena" parent="Palco" instance=ExtResource("3_personagem")]
+unique_name_in_owner = true
+position = Vector2(880, 500)
+scale = Vector2(4, 4)
+id = "helena"
+virado_para_esquerda = true
+
+[node name="CaixaDialogo" parent="." instance=ExtResource("4_caixa")]
+unique_name_in_owner = true
+layout_mode = 1

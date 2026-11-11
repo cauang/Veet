@@ -36,7 +36,7 @@ func atualizar_hud() -> void:
 	barra_vida.max_value = vida_maxima
 	barra_vida.value = vida_atual
 
-	texto_saude.text = str(vida_atual) + " / " + str(vida_maxima)
+	texto_saude.text = "Vínculo " + str(vida_atual) + "/" + str(vida_maxima)
 
 
 # Diminui a vida. Retorna false se o dano foi ignorado (vida ja zerada).

@@ -1,0 +1,146 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/resumo_dia/resumo_dia.gd" id="1_resumo"]
+[ext_resource type="PackedScene" path="res://scenes/componentes/cenario_clinica.tscn" id="2_cenario"]
+[ext_resource type="FontFile" path="res://assets/fontes/PressStart2P-Regular.ttf" id="3_fonte"]
+
+[sub_resource type="Theme" id="Tema"]
+default_font = ExtResource("3_fonte")
+default_font_size = 14
+
+[sub_resource type="StyleBoxFlat" id="PainelEstilo"]
+bg_color = Color(0, 0, 0, 0.95)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.949, 0.839, 0.459, 1)
+
+[sub_resource type="StyleBoxFlat" id="NotaEstilo"]
+bg_color = Color(0.063, 0.086, 0.141, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+
+[node name="ResumoDia" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Tema")
+script = ExtResource("1_resumo")
+
+[node name="Fundo" parent="." instance=ExtResource("2_cenario")]
+modulate = Color(0.45, 0.42, 0.48, 1)
+layout_mode = 1
+
+[node name="Painel" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -420.0
+offset_top = -215.0
+offset_right = 420.0
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("PainelEstilo")
+
+[node name="Margem" type="MarginContainer" parent="Painel"]
+layout_mode = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 28
+
+[node name="Coluna" type="VBoxContainer" parent="Painel/Margem"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="Titulo" type="Label" parent="Painel/Margem/Coluna"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.949, 0.839, 0.459, 1)
+theme_override_font_sizes/font_size = 26
+text = "RESUMO DO DIA"
+horizontal_alignment = 1
+
+[node name="Caso" type="Label" parent="Painel/Margem/Coluna"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.659, 0.835, 0.729, 1)
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Linha" type="HBoxContainer" parent="Painel/Margem/Coluna"]
+layout_mode = 2
+theme_override_constants/separation = 36
+alignment = 1
+
+[node name="CaixaNota" type="PanelContainer" parent="Painel/Margem/Coluna/Linha"]
+custom_minimum_size = Vector2(170, 170)
+layout_mode = 2
+theme_override_styles/panel = SubResource("NotaEstilo")
+
+[node name="Nota" type="Label" parent="Painel/Margem/Coluna/Linha/CaixaNota"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.949, 0.839, 0.459, 1)
+theme_override_font_sizes/font_size = 84
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Estatisticas" type="VBoxContainer" parent="Painel/Margem/Coluna/Linha"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+
+[node name="Vinculo" type="Label" parent="Painel/Margem/Coluna/Linha/Estatisticas"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Pistas" type="Label" parent="Painel/Margem/Coluna/Linha/Estatisticas"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Erros" type="Label" parent="Painel/Margem/Coluna/Linha/Estatisticas"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Estresse" type="Label" parent="Painel/Margem/Coluna/Linha/Estatisticas"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Mensagem" type="Label" parent="Painel/Margem/Coluna"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.659, 0.835, 0.729, 1)
+text = "Fim da demonstração. Mais casos em breve!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Botoes" type="HBoxContainer" parent="Painel/Margem/Coluna"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="BtnNovamente" type="Button" parent="Painel/Margem/Coluna/Botoes"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 46)
+layout_mode = 2
+focus_mode = 0
+text = "JOGAR DE NOVO"
+
+[node name="BtnMenu" type="Button" parent="Painel/Margem/Coluna/Botoes"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 46)
+layout_mode = 2
+focus_mode = 0
+text = "MENU PRINCIPAL"

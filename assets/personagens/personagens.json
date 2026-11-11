@@ -1,0 +1,83 @@
+{
+  "quadro": [
+    64,
+    96
+  ],
+  "ancora": "centro-inferior",
+  "linhas": [
+    "idle",
+    "falar",
+    "andar",
+    "acenar"
+  ],
+  "colunas": 4,
+  "personagens": {
+    "protagonista": {
+      "nome": "Residente (Protagonista)",
+      "arquetipo": "Protagonista",
+      "pets": [],
+      "folha": "protagonista/protagonista_sheet.png",
+      "retratos": "protagonista/protagonista_retratos.png"
+    },
+    "helena": {
+      "nome": "Dra. Helena (Preceptora)",
+      "arquetipo": "Preceptora",
+      "pets": [],
+      "folha": "helena/helena_sheet.png",
+      "retratos": "helena/helena_retratos.png"
+    },
+    "euler": {
+      "nome": "Prof. Euler (Tutor)",
+      "arquetipo": "O Professor de Exatas",
+      "pets": [
+        "fibonacci",
+        "sultao"
+      ],
+      "folha": "euler/euler_sheet.png",
+      "retratos": "euler/euler_retratos.png"
+    },
+    "davi": {
+      "nome": "Davi (Calouro)",
+      "arquetipo": "O Calouro Aflito",
+      "pets": [
+        "pipoca",
+        "nutella"
+      ],
+      "folha": "davi/davi_sheet.png",
+      "retratos": "davi/davi_retratos.png"
+    },
+    "rita": {
+      "nome": "Dona Rita (Funcionaria do Bloco)",
+      "arquetipo": "A Funcionaria do Bloco",
+      "pets": [
+        "tigre",
+        "racao"
+      ],
+      "folha": "rita/rita_sheet.png",
+      "retratos": "rita/rita_retratos.png"
+    },
+    "beatriz": {
+      "nome": "Beatriz (Veterana)",
+      "arquetipo": "Calouro Aflito (veterana do TCC)",
+      "pets": [
+        "schrodinger",
+        "luna"
+      ],
+      "folha": "beatriz/beatriz_sheet.png",
+      "retratos": "beatriz/beatriz_retratos.png"
+    }
+  },
+  "fps": {
+    "idle": 6,
+    "falar": 8,
+    "andar": 8,
+    "acenar": 6
+  },
+  "retratos": [
+    "neutro",
+    "falando",
+    "sorrindo",
+    "preocupado",
+    "surpreso"
+  ]
+}

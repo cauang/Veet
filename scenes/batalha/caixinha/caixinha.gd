@@ -19,7 +19,7 @@ signal vida_zerada()
 @onready var patinha: Sprite2D = $Patinha
 @onready var area_patinha: Area2D = $Patinha/AreaPatinha
 @onready var hud_saude = $HudSaude
-@onready var emissor = $EmissorProjeteis
+@onready var emissor = $Caixa/EmissorProjeteis
 @onready var fim_de_jogo = $CamadaFimDeJogo/FimDeJogo
 
 var _limites := Rect2()
@@ -32,7 +32,7 @@ var _tween_piscar: Tween
 func _ready() -> void:
 	_limites = Rect2(caixa.position, caixa.size)
 	if _limites.size.x <= 0.0 or _limites.size.y <= 0.0:
-		_limites = Rect2(365.0, 360.0, 550.0, 300.0)
+		_limites = Rect2(365.0, 276.0, 550.0, 300.0)
 
 	if patinha.texture != null:
 		_metade_patinha = patinha.texture.get_size() * patinha.scale * 0.5
@@ -48,6 +48,27 @@ func _ready() -> void:
 
 	if iniciar_automatico:
 		emissor.iniciar_fase()
+	else:
+		# Modo por turnos: a batalha chama iniciar_esquiva() quando for a vez do paciente.
+		_ativo = false
+		patinha.visible = false
+
+
+## Comeca a fase de esquiva (turno do paciente) no modo por turnos.
+func iniciar_esquiva(padrao := "", duracao := -1.0, intensidade := 1.0) -> void:
+	_ativo = true
+	_invulneravel = 0.0
+	patinha.modulate.a = 1.0
+	patinha.visible = true
+	patinha.position = _limites.get_center()
+	emissor.iniciar_fase(padrao, duracao, intensidade)
+
+
+func encerrar_esquiva() -> void:
+	_ativo = false
+	patinha.visible = false
+	emissor.parar_fase()
+	hud_saude.esconder_tempo()
 
 
 func _physics_process(delta: float) -> void:
@@ -122,12 +143,14 @@ func _on_fase_terminou() -> void:
 	fase_sobrevivida.emit()
 	hud_saude.esconder_tempo()
 
-	if not repetir_fase:
-		return
-
-	await get_tree().create_timer(1.2).timeout
-	if _ativo:
-		emissor.iniciar_fase()
+	# Rodando a cena solta (F6) a fase repete para testar a esquiva. Embutida na
+	# batalha (iniciar_automatico = false) ela so avisa que o turno acabou.
+	if iniciar_automatico and repetir_fase:
+		await get_tree().create_timer(1.2).timeout
+		if _ativo:
+			emissor.iniciar_fase()
+	else:
+		_ativo = false
 
 
 func _on_vida_zerada() -> void:
@@ -138,6 +161,9 @@ func _on_vida_zerada() -> void:
 	emissor.parar_fase()
 	hud_saude.esconder_tempo()
 	vida_zerada.emit()
+	var audio := get_node_or_null("/root/GerenciadorAudio")
+	if audio != null:
+		audio.call("derrota")
 
 	# Deixa o ultimo dano aparecer antes de abrir o modal.
 	await get_tree().create_timer(0.6).timeout
@@ -146,8 +172,8 @@ func _on_vida_zerada() -> void:
 
 
 func _on_tentar_novamente() -> void:
-	get_tree().reload_current_scene()
+	GerenciadorCenas.reiniciar_etapa()
 
 
 func _on_voltar_ao_menu() -> void:
-	get_tree().change_scene_to_file("res://scenes/home/tela_home.tscn")
+	GerenciadorCenas.voltar_ao_menu()

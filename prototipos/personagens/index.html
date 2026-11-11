@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Veet - Elenco da Clinica</title>
+<style>
+  @font-face{font-family:"P2P";src:url("../../assets/fontes/PressStart2P-Regular.ttf")}
+  :root{--creme:#F4EBD9;--areia:#E3CDA4;--madeira:#B98B5E;--menta:#A8D5BA;--folha:#6FA287;--azulp:#9EC5E0;--azuln:#4A5F85;--noite:#1d2433;--preto:#2A2420}
+  *{box-sizing:border-box}
+  body{margin:0;background:#141a26;color:var(--creme);font-family:"P2P",monospace;font-size:11px;line-height:1.7}
+  header{padding:18px 20px 6px}
+  h1{font-size:16px;margin:0 0 4px;color:var(--menta)}
+  header p{margin:0;color:var(--azulp);font-size:9px}
+  main{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;padding:16px 20px 28px;max-width:1100px;margin:auto}
+  @media(max-width:820px){main{grid-template-columns:1fr}}
+  .cena{position:relative;max-width:640px;margin:0 auto;border:4px solid var(--preto);background:#222d40;overflow:hidden;aspect-ratio:16/9;image-rendering:pixelated}
+  canvas{display:block;width:100%;height:100%;image-rendering:pixelated}
+  .caixa{position:relative;margin-left:auto;margin-right:auto;margin-top:22px;border:4px solid #fff;background:#000;padding:16px 16px 18px;min-height:96px;box-shadow:0 0 0 4px #000}
+  .caixa .quem{position:absolute;top:-14px;left:12px;background:var(--azuln);border:3px solid #fff;padding:3px 8px;font-size:9px}
+  .caixa .retrato{float:left;width:64px;height:64px;margin-right:14px;image-rendering:pixelated;background:#101624;border:3px solid #fff}
+  .caixa p{margin:0;font-size:10px;line-height:2;min-height:3em}
+  .caixa .seta{position:absolute;right:12px;bottom:8px;animation:pisca .7s steps(2) infinite;color:var(--amarelo,#F2D675)}
+  @keyframes pisca{50%{opacity:0}}
+  aside{display:flex;flex-direction:column;gap:12px}
+  .box{background:#1d2433;border:3px solid #3a4560;padding:12px}
+  .box h2{font-size:10px;margin:0 0 10px;color:var(--amarelo,#F2D675)}
+  .grid{display:grid;gap:6px}
+  button{font:inherit;font-size:9px;color:var(--creme);background:#2a3550;border:3px solid #3a4560;padding:9px 8px;cursor:pointer;text-align:left}
+  button:hover{border-color:var(--azulp)}
+  button.on{background:var(--azuln);border-color:#fff}
+  .linha{display:flex;gap:6px;flex-wrap:wrap}
+  .linha button{flex:1;min-width:70px;text-align:center}
+  label{display:flex;justify-content:space-between;align-items:center;font-size:9px;gap:8px}
+  input[type=range]{accent-color:var(--menta);width:130px}
+  .folhas{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+  .folhas figure{margin:0;background:#101624;border:3px solid #3a4560;padding:6px;text-align:center}
+  .folhas img{width:100%;image-rendering:pixelated;display:block}
+  .folhas figcaption{font-size:7px;margin-top:4px;color:var(--azulp)}
+  .rodape{max-width:1100px;margin:0 auto;padding:0 20px 28px}
+  .rodape .box{margin-top:0}
+  .rodape a{color:var(--menta)}
+  small{color:var(--azulp);font-size:8px;line-height:1.9;display:block}
+  code{color:var(--menta)}
+</style>
+</head>
+<body>
+<header>
+  <h1>VEET &middot; Elenco da Clinica</h1>
+  <p>Prototipo dos personagens da introducao &middot; sprites 64x96 &middot; filtro Nearest</p>
+</header>
+
+<main>
+  <div>
+    <div class="cena" id="cena">
+      <canvas id="tela" width="640" height="360"></canvas>
+    </div>
+    <div class="caixa" id="caixa">
+        <span class="quem" id="quem">Dra. Helena</span>
+        <canvas class="retrato" id="retrato" width="64" height="64"></canvas>
+        <p id="fala"></p>
+        <span class="seta" id="seta">&#9660;</span>
+    </div>
+    <div class="folhas" id="folhas"></div>
+  </div>
+
+  <aside>
+    <div class="box">
+      <h2>Personagem</h2>
+      <div class="grid" id="botoesPers"></div>
+    </div>
+    <div class="box">
+      <h2>Animacao</h2>
+      <div class="linha" id="botoesAnim"></div>
+    </div>
+    <div class="box">
+      <h2>Controles</h2>
+      <div class="grid">
+        <label>Zoom <input type="range" id="zoom" min="2" max="6" value="4"></label>
+        <label>Velocidade <input type="range" id="vel" min="25" max="200" value="100"></label>
+        <div class="linha">
+          <button id="btnIntro">&#9654; Introducao</button>
+          <button id="btnFundo">Fundo</button>
+        </div>
+      </div>
+    </div>
+    <div class="box"><small>
+      Setas &larr; &rarr; andam e <code>ENTER</code>/<code>ESPACO</code> avanca a fala.<br>
+      Cada folha tem 4 linhas (idle, falar, andar, acenar) x 4 quadros. Retratos: 5 expressoes.
+    </small></div>
+  </aside>
+</main>
+
+<div class="rodape"><div class="box"><small>
+  Arquivos em <code>assets/personagens/&lt;id&gt;/</code>: <code>*_sheet.png</code> (256x384), <code>frames/</code> e <code>*_retratos.png</code> (5 x 64x64).
+  Gerados por <code>prototipos/personagens/gerar_personagens.py</code>. Metadados em <code>assets/personagens/personagens.json</code>.
+</small></div></div>
+
+<script>
+const PERS = {
+  protagonista:{nome:"Residente", cor:"#A8D5BA"},
+  helena:{nome:"Dra. Helena", cor:"#9EC5E0"},
+  euler:{nome:"Prof. Euler", cor:"#E3CDA4"},
+  davi:{nome:"Davi", cor:"#5D7FB0"},
+  rita:{nome:"Dona Rita", cor:"#E39A5B"},
+  beatriz:{nome:"Beatriz", cor:"#6FA287"}
+};
+const ANIMS = ["idle","falar","andar","acenar"];
+const FPS = {idle:6,falar:8,andar:8,acenar:6};
+const FW=64, FH=96;
+const imgs={}, rets={};
+let carregadas=0, total=12;
+for(const id in PERS){
+  imgs[id]=new Image(); rets[id]=new Image();
+  imgs[id].onload=rets[id].onload=()=>{ if(++carregadas===total) iniciar(); };
+  imgs[id].src=`../../assets/personagens/${id}/${id}_sheet.png`;
+  rets[id].src=`../../assets/personagens/${id}/${id}_retratos.png`;
+}
+
+const tela=document.getElementById("tela"), ctx=tela.getContext("2d");
+const ret=document.getElementById("retrato"), rctx=ret.getContext("2d");
+ctx.imageSmoothingEnabled=false; rctx.imageSmoothingEnabled=false;
+
+let atual="helena", anim="idle", zoom=4, vel=1, tempo=0, fundo=1;
+let x={protagonista:58, helena:158, euler:268, davi:376, rita:484, beatriz:588};   // posicoes na cena (base dos pes)
+let virado={protagonista:false, helena:false, euler:true, davi:true, rita:true, beatriz:true};
+let andando=0, teclas={};
+
+function fundoCena(){
+  const g=ctx.createLinearGradient(0,0,0,360);
+  if(fundo===1){ g.addColorStop(0,"#34455e"); g.addColorStop(1,"#222d40"); }
+  else         { g.addColorStop(0,"#F4EBD9"); g.addColorStop(1,"#E3CDA4"); }
+  ctx.fillStyle=g; ctx.fillRect(0,0,640,360);
+  if(fundo===1){
+    ctx.fillStyle="#2c3a52"; for(let i=0;i<640;i+=32) ctx.fillRect(i,170,1,70);
+    ctx.fillStyle="#3b4b66"; ctx.fillRect(0,168,640,4);
+    // janela
+    ctx.fillStyle="#2A2420"; ctx.fillRect(40,34,120,92);
+    ctx.fillStyle="#9EC5E0"; ctx.fillRect(46,40,108,80);
+    ctx.fillStyle="#2A2420"; ctx.fillRect(98,40,4,80); ctx.fillRect(46,76,108,4);
+    ctx.fillStyle="#fffdf7"; ctx.fillRect(50,46,10,6);
+    // cruz
+    ctx.fillStyle="#A8D5BA"; ctx.fillRect(310,26,28,10); ctx.fillRect(319,17,10,28);
+    // quadro
+    ctx.fillStyle="#2A2420"; ctx.fillRect(480,40,84,70);
+    ctx.fillStyle="#E3CDA4"; ctx.fillRect(485,45,74,60);
+    ctx.fillStyle="#B98B5E"; for(let i=0;i<5;i++) ctx.fillRect(493,66+i*7,58,2);
+    // piso xadrez
+    for(let yy=240;yy<360;yy+=24) for(let xx=0;xx<640;xx+=24){
+      ctx.fillStyle=((xx/24+yy/24)%2)?"#27334a":"#2d3a54"; ctx.fillRect(xx,yy,24,24);
+    }
+    ctx.fillStyle="#3b4b66"; ctx.fillRect(0,236,640,4);
+    // luminarias
+    ctx.fillStyle="#cfd8e3"; ctx.fillRect(60,4,150,5); ctx.fillRect(420,4,150,5);
+  }
+}
+
+function desenharPers(id, a, t, px, py, espelhar){
+  const fps=FPS[a]*vel, quadro=Math.floor(t*fps)%4, linha=ANIMS.indexOf(a);
+  ctx.save();
+  const dw=FW*1.9, dh=FH*1.9;
+  ctx.translate(px, py);
+  if(espelhar) ctx.scale(-1,1);
+  ctx.drawImage(imgs[id], quadro*FW, linha*FH, FW, FH, -dw/2, -dh, dw, dh);
+  ctx.restore();
+}
+
+function quadro(){
+  fundoCena();
+  const ordem=Object.keys(PERS).sort((a,b)=>0);
+  for(const id of ordem){
+    let a="idle";
+    if(id===atual) a=anim;
+    desenharPers(id, a, tempo, x[id], 330, virado[id]);
+    if(id===atual){
+      ctx.fillStyle="#F2D675";
+      const bob=Math.floor(tempo*3)%2;
+      ctx.fillRect(x[id]-4, 330-FH*2-12-bob*2, 8, 4);
+      ctx.fillRect(x[id]-2, 330-FH*2-8-bob*2, 4, 4);
+    }
+  }
+}
+
+// ---------------------------------------------- introducao (falas de exemplo)
+const ROTEIRO=[
+  {q:"helena", m:"fecha", t:"Boa noite, residente! Eu sou a Dra. Helena, sua preceptora neste plantao.", a:"acenar"},
+  {q:"helena", m:"abre1", t:"Aqui na clinica da Universidade de Fortaleza, a UNIFOR, ninguem e inimigo. O medo e a dor e que atacam.", a:"falar"},
+  {q:"protagonista", m:"fecha", t:"Entendi, doutora. Acalmar primeiro, examinar depois.", a:"falar"},
+  {q:"helena", m:"sorri", t:"Isso! Vem comigo, o primeiro paciente ja chegou.", a:"acenar"},
+  {q:"euler", m:"fecha", t:"Boa noite, aluno. O modulo de comportamento do Fibonacci apresentou uma anomalia.", a:"falar"},
+  {q:"helena", m:"sorri", t:"Esse e o Prof. Euler com o Fibonacci e o Sultao. Vamos cuidar bem deles!", a:"falar"},
+  {q:"davi", m:"preocupa", t:"Doutora, a Pipoca comeu uma planta e eu acho que ela esta morrendo!", a:"falar"},
+  {q:"rita", m:"abre1", t:"Calma, menino. Esse Tigre tem sete vidas e ja gastou umas tres no campus.", a:"falar"},
+  {q:"beatriz", m:"surpresa", t:"Ai, nao! O Schrodinger de novo... e eu com o TCC pra entregar amanha!", a:"falar"},
+  {q:"helena", m:"sorri", t:"Um paciente de cada vez. Acalmar primeiro, examinar depois!", a:"acenar"},
+];
+let passo=-1, digitando=false, textoAtual="", idxTexto=0, ultimoTipo=0;
+const caixa=document.getElementById("caixa");
+caixa.style.display="none";
+
+function proximaFala(){
+  if(digitando){ idxTexto=textoAtual.length; return; }
+  passo++;
+  if(passo>=ROTEIRO.length){ passo=-1; caixa.style.display="none"; anim="idle"; return; }
+  const f=ROTEIRO[passo];
+  atual=f.q; anim=f.a; selecionar(atual,true);
+  caixa.style.display="block";
+  document.getElementById("quem").textContent=PERS[f.q].nome;
+  textoAtual=f.t; idxTexto=0; digitando=true;
+  const col={fecha:0,abre1:1,sorri:2,preocupa:3,surpresa:4}[f.m]||0;
+  rctx.clearRect(0,0,64,64); rctx.drawImage(rets[f.q], col*64,0,64,64, 0,0,64,64);
+}
+function atualizarTexto(dt){
+  if(!digitando) return;
+  ultimoTipo+=dt;
+  while(ultimoTipo>0.03 && idxTexto<textoAtual.length){ idxTexto++; ultimoTipo-=0.03; }
+  document.getElementById("fala").textContent=textoAtual.slice(0,idxTexto);
+  if(idxTexto>=textoAtual.length){ digitando=false; document.getElementById("seta").style.visibility="visible"; if(anim==="falar") anim="idle"; }
+  else document.getElementById("seta").style.visibility="hidden";
+}
+
+// ---------------------------------------------- interface
+function selecionar(id, silencioso){
+  atual=id;
+  document.querySelectorAll("#botoesPers button").forEach(b=>b.classList.toggle("on", b.dataset.id===id));
+  if(!silencioso && passo>=0){ passo=-1; caixa.style.display="none"; }
+}
+function trocarAnim(a){
+  anim=a;
+  document.querySelectorAll("#botoesAnim button").forEach(b=>b.classList.toggle("on", b.dataset.a===a));
+}
+
+function iniciar(){
+  const bp=document.getElementById("botoesPers");
+  for(const id in PERS){
+    const b=document.createElement("button"); b.dataset.id=id; b.textContent=PERS[id].nome;
+    b.onclick=()=>selecionar(id); bp.appendChild(b);
+  }
+  const ba=document.getElementById("botoesAnim");
+  ANIMS.forEach(a=>{const b=document.createElement("button"); b.dataset.a=a; b.textContent=a; b.onclick=()=>{ if(passo>=0){passo=-1;caixa.style.display="none";} trocarAnim(a); }; ba.appendChild(b);});
+  document.getElementById("zoom").oninput=e=>{ zoom=+e.target.value; };
+  document.getElementById("vel").oninput=e=>{ vel=e.target.value/100; };
+  document.getElementById("btnIntro").onclick=()=>{ passo=-1; proximaFala(); };
+  document.getElementById("btnFundo").onclick=()=>{ fundo=fundo?0:1; };
+  const fo=document.getElementById("folhas");
+  for(const id in PERS){
+    const fg=document.createElement("figure");
+    fg.innerHTML=`<img src="../../assets/personagens/${id}/${id}_sheet.png" alt="${PERS[id].nome}"><figcaption>${PERS[id].nome}</figcaption>`;
+    fo.appendChild(fg);
+  }
+  selecionar(atual,true); trocarAnim("idle");
+  addEventListener("keydown",e=>{
+    teclas[e.key]=true;
+    if(e.key==="Enter"||e.key===" "){ e.preventDefault(); if(passo>=0) proximaFala(); }
+  });
+  addEventListener("keyup",e=>{ delete teclas[e.key]; });
+  let ult=performance.now();
+  (function loop(n){
+    const real=(n-ult)/1000, dt=Math.min(real,0.1); ult=n; tempo+=real;
+    atualizarTexto(real);
+    if(passo<0){
+      const esq=teclas["ArrowLeft"], dir=teclas["ArrowRight"];
+      if(esq||dir){
+        x[atual]+= (dir?1:-1)*70*dt*vel; x[atual]=Math.max(40,Math.min(600,x[atual]));
+        virado[atual]=!!esq; andando=1; trocarAnim("andar");
+      } else if(andando){ andando=0; trocarAnim("idle"); }
+    }
+    quadro();
+    // zoom: so afeta a escala visual do canvas
+    document.getElementById("cena").style.maxWidth=(zoom*160)+"px"; caixa.style.maxWidth=(zoom*160)+"px";
+    requestAnimationFrame(loop);
+  })(ult);
+}
+</script>
+</body>
+</html>

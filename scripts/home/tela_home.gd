@@ -7,6 +7,9 @@ extends Control
 ##
 ## Qualquer tecla ou clique durante a abertura acelera tudo ate o menu.
 
+# Caixa de confirmacao estilizada (fechar jogo).
+const CAIXA_CONFIRMACAO: PackedScene = preload("res://scenes/componentes/caixa_confirmacao.tscn")
+
 # A abertura completa toca uma vez por execucao; ao voltar do jogo ela e rapida.
 static var _abertura_ja_vista := false
 
@@ -53,9 +56,9 @@ const COR_BOTAO_APAGADO := Color(1, 1, 1, 1)
 @onready var cortina: ColorRect = %Cortina
 
 @onready var painel_configuracoes: Control = %PainelConfiguracoes
-@onready var confirmacao_fechar: ConfirmationDialog = %ConfirmacaoFechar
 
 var audio: Node
+var _confirmacao_fechar: CaixaConfirmacao
 var _ignorar_foco := false
 var _velocidade_abertura := 1.0
 var _abertura: Tween
@@ -104,11 +107,11 @@ func _input(event: InputEvent) -> void:
 # ---------------------------------------------------------------- preparacao
 
 func _conectar_sinais() -> void:
+	ecg_intro.connect("batimento", _on_batimento_ecg)
 	btn_jogar.pressed.connect(_on_jogar)
 	btn_configuracoes.pressed.connect(_on_configuracoes)
 	btn_fechar_jogo.pressed.connect(_on_fechar_jogo)
 	painel_configuracoes.connect("solicitar_fechar", _fechar_painel)
-	confirmacao_fechar.confirmed.connect(_on_confirmar_fechar)
 
 	for i in range(_botoes.size()):
 		var botao := _botoes[i]
@@ -348,12 +351,17 @@ func _on_perdeu_foco(indice: int) -> void:
 	create_tween().tween_property(camada, "modulate:a", 0.0, 0.25).set_trans(Tween.TRANS_SINE)
 
 
+func _on_batimento_ecg() -> void:
+	audio.bip_ecg()
+
+
 func _on_jogar() -> void:
 	audio.confirmar()
+	audio.parar_musica(0.8)   # a musica da Home acaba aqui; cada cena do jogo tem a sua
 	_menu_pronto = false
 	var t := create_tween()
 	t.tween_property(cortina, "color:a", 1.0, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-	t.tween_callback(get_tree().change_scene_to_file.bind("res://scenes/home/cena_placeholder.tscn"))
+	t.tween_callback(GerenciadorCenas.iniciar_jogo.bind(true))
 
 
 func _on_configuracoes() -> void:
@@ -387,7 +395,11 @@ func _painel_invisivel() -> void:
 
 func _on_fechar_jogo() -> void:
 	audio.clique()
-	confirmacao_fechar.popup_centered()
+	if _confirmacao_fechar == null:
+		_confirmacao_fechar = CAIXA_CONFIRMACAO.instantiate()
+		add_child(_confirmacao_fechar)
+		_confirmacao_fechar.confirmado.connect(_on_confirmar_fechar)
+	_confirmacao_fechar.perguntar("FECHAR JOGO", "Tem certeza que deseja sair do jogo?", "SIM, FECHAR", "CANCELAR")
 
 
 func _on_confirmar_fechar() -> void:

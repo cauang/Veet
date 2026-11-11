@@ -7,6 +7,13 @@ extends Control
 ##  - monitor da parede (`modo_monitor = true`): um batimento que varre a tela
 ##    continuamente, deixando um rastro que desaparece aos poucos.
 
+## Emitido quando o pico do batimento (complexo QRS) acaba de ser desenhado na abertura.
+## A Home usa para tocar o "pi" do monitor cardiaco.
+signal batimento()
+
+## Fracao da linha em que fica o pico do QRS (x ~ 260 de 600 em FORMA_ABERTURA).
+const PROGRESSO_PICO := 0.43
+
 @export var modo_monitor := false
 @export var cor := Color(0.44, 0.88, 0.63)
 @export var espessura := 4.0
@@ -14,7 +21,11 @@ extends Control
 
 var progresso := 0.0:
 	set(valor):
+		var anterior := progresso
 		progresso = clampf(valor, 0.0, 1.0)
+		if not modo_monitor and anterior < PROGRESSO_PICO and progresso >= PROGRESSO_PICO \
+				and is_visible_in_tree() and modulate.a > 0.2:
+			batimento.emit()
 		queue_redraw()
 
 # Forma do batimento da abertura, em unidades de 600 x 160.
