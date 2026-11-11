@@ -350,6 +350,7 @@ func _on_perdeu_foco(indice: int) -> void:
 
 func _on_jogar() -> void:
 	audio.confirmar()
+	audio.parar_musica(0.8)   # a musica da Home acaba aqui; cada cena do jogo tem a sua
 	_menu_pronto = false
 	var t := create_tween()
 	t.tween_property(cortina, "color:a", 1.0, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)

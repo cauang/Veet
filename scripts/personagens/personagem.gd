@@ -77,9 +77,13 @@ func andar_ate(destino_x: float, velocidade := 140.0) -> void:
 		return
 	virado_para_esquerda = destino_x < position.x
 	tocar("andar")
+	var audio := get_node_or_null("/root/GerenciadorAudio")
+	var passos: AudioStreamPlayer = audio.call("passos") if audio != null else null
 	var tween := create_tween()
 	tween.tween_property(self, "position:x", destino_x, distancia / velocidade)
 	await tween.finished
+	if passos != null:
+		passos.stop()
 	tocar("idle")
 
 

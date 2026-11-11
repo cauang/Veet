@@ -161,6 +161,9 @@ func _on_vida_zerada() -> void:
 	emissor.parar_fase()
 	hud_saude.esconder_tempo()
 	vida_zerada.emit()
+	var audio := get_node_or_null("/root/GerenciadorAudio")
+	if audio != null:
+		audio.call("derrota")
 
 	# Deixa o ultimo dano aparecer antes de abrir o modal.
 	await get_tree().create_timer(0.6).timeout

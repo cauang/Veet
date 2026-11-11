@@ -47,6 +47,7 @@ var progresso := 0
 var estresse := 0
 var pistas: Array[String] = []
 var diagnostico_confirmado := false
+var erros := 0
 
 var _usados: Dictionary = {}
 var _acao := ""
@@ -59,6 +60,8 @@ var _digitando := false
 var _tween_texto: Tween
 var _depois_do_texto := Callable()
 var _audio: Node
+var _estado_anterior := "neutro"
+var _ultimo_caractere := 0
 var _estilo_normal: StyleBoxFlat
 var _estilo_sel: StyleBoxFlat
 
@@ -326,9 +329,11 @@ func _escolher_opcao(opcao: Dictionary) -> void:
 				diagnostico_confirmado = true
 			else:
 				ganho = 0
+				erros += 1
 		"tratamento":
 			if not opcao.get("correto", false):
 				ganho = 0
+				erros += 1
 
 	_aplicar_efeitos(ganho, variacao_estresse)
 
@@ -362,7 +367,15 @@ func _estado_visual() -> String:
 
 
 func _atualizar_paciente() -> void:
-	var caminho := SPRITE_PACIENTE % [paciente_id, paciente_id, _estado_visual()]
+	var estado_visual := _estado_visual()
+	if estado_visual != _estado_anterior:
+		# O gato reage: miado baixo quando piora, miado manso quando melhora.
+		if estado_visual in ["assustado", "dor"] and _audio != null:
+			_audio.call("miado", false)
+		elif estado_visual in ["aliviado", "curado"] and _audio != null:
+			_audio.call("miado", true)
+		_estado_anterior = estado_visual
+	var caminho := SPRITE_PACIENTE % [paciente_id, paciente_id, estado_visual]
 	if ResourceLoader.exists(caminho):
 		paciente.texture = load(caminho)
 
@@ -401,12 +414,41 @@ func _finalizar_caso() -> void:
 
 func _mostrar_resolvido() -> void:
 	estado = Estado.FIM
+	_guardar_resultado()
 	gato_final.texture = paciente.texture
 	%FalaTutor.text = "%s:\n\"%s\"" % [caso.get("tutor", ""), caso["fim"]["fala_tutor"]]
 	resolvido.modulate.a = 0.0
 	resolvido.visible = true
 	create_tween().tween_property(resolvido, "modulate:a", 1.0, 0.6)
 	_som("carimbo")
+	_som("vitoria")
+
+
+## Entrega o resultado ao Resumo do Dia (proxima etapa do fluxo).
+func _guardar_resultado() -> void:
+	var hud = caixinha.hud_saude
+	var vinculo: int = hud.vida_atual
+	var vinculo_max: int = hud.vida_maxima
+	var pontos := 100 - erros * 15 - (vinculo_max - vinculo) * 5 - estresse * 2
+	var nota := "C"
+	if pontos >= 90:
+		nota = "S"
+	elif pontos >= 75:
+		nota = "A"
+	elif pontos >= 55:
+		nota = "B"
+	GerenciadorCenas.dados_partida = {
+		"paciente": caso.get("nome", paciente_id),
+		"tutor": caso.get("tutor", ""),
+		"paciente_id": paciente_id,
+		"nota": nota,
+		"pontos": pontos,
+		"erros": erros,
+		"pistas": pistas.size(),
+		"vinculo": vinculo,
+		"vinculo_max": vinculo_max,
+		"estresse": estresse,
+	}
 
 
 # ------------------------------------------------------------------ texto
@@ -423,19 +465,36 @@ func _dizer(texto: String, depois: Callable) -> void:
 
 func _digitar(texto: String) -> void:
 	texto_caixa.text = texto
-	texto_caixa.visible_ratio = 0.0
+	texto_caixa.visible_characters = 0
+	_ultimo_caractere = 0
 	_digitando = true
 	if _tween_texto != null and _tween_texto.is_valid():
 		_tween_texto.kill()
 	_tween_texto = create_tween()
-	_tween_texto.tween_property(texto_caixa, "visible_ratio", 1.0, maxf(texto.length() / VELOCIDADE_TEXTO, 0.05))
-	_tween_texto.finished.connect(func() -> void: _digitando = false)
+	_tween_texto.tween_method(_ao_digitar, 0, texto.length(), maxf(texto.length() / VELOCIDADE_TEXTO, 0.05))
+	_tween_texto.finished.connect(_fim_digitar)
+
+
+## Revela os caracteres ate `n` e toca o blip do narrador a cada 2 letras.
+func _ao_digitar(n: int) -> void:
+	texto_caixa.visible_characters = n
+	if n <= _ultimo_caractere:
+		return
+	_ultimo_caractere = n
+	var letra := texto_caixa.text.substr(n - 1, 1)
+	if n % 2 == 0 and letra != " " and letra != "\n" and _audio != null:
+		_audio.call("voz", "narrador")
+
+
+func _fim_digitar() -> void:
+	texto_caixa.visible_characters = -1
+	_digitando = false
 
 
 func _completar_texto() -> void:
 	if _tween_texto != null and _tween_texto.is_valid():
 		_tween_texto.kill()
-	texto_caixa.visible_ratio = 1.0
+	texto_caixa.visible_characters = -1
 	_digitando = false
 
 

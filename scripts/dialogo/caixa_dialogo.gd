@@ -36,6 +36,8 @@ var _digitando := false
 var _ativo := false
 var _tween: Tween
 var _audio: Node
+var _voz := "narrador"
+var _ultimo_caractere := 0
 
 
 func _ready() -> void:
@@ -106,27 +108,43 @@ func _proxima_fala() -> void:
 	retrato.get_parent().visible = retrato.texture != null and not fala.get("sem_retrato", false)
 	nome.visible = nome.text != ""
 	texto.text = String(fala.get("texto", ""))
-	texto.visible_ratio = 0.0
+	texto.visible_characters = 0
+	_ultimo_caractere = 0
+	# Voz do personagem; narracao ("* Voce ...") usa o narrador.
+	_voz = "narrador" if fala.get("sem_retrato", false) else String(fala.get("quem", "narrador"))
 	seta.visible = false
 	_digitando = true
 	fala_iniciada.emit(indice, fala)
 
 	if _tween != null and _tween.is_valid():
 		_tween.kill()
-	var duracao := maxf(texto.text.length() / velocidade_texto, 0.05)
+	var total := texto.text.length()
+	var duracao := maxf(total / velocidade_texto, 0.05)
 	_tween = create_tween()
-	_tween.tween_property(texto, "visible_ratio", 1.0, duracao)
+	_tween.tween_method(_ao_digitar, 0, total, duracao)
 	_tween.finished.connect(_texto_completo)
+
+
+## Mostra os caracteres ate `n` e toca um blip de voz a cada 2 letras (sem espacos).
+func _ao_digitar(n: int) -> void:
+	texto.visible_characters = n
+	if n <= _ultimo_caractere:
+		return
+	_ultimo_caractere = n
+	var letra := texto.text.substr(n - 1, 1)
+	if n % 2 == 0 and letra != " " and letra != "\n" and _audio != null and _audio.has_method("voz"):
+		_audio.call("voz", _voz)
 
 
 func _completar_texto() -> void:
 	if _tween != null and _tween.is_valid():
 		_tween.kill()
-	texto.visible_ratio = 1.0
+	texto.visible_characters = -1
 	_texto_completo()
 
 
 func _texto_completo() -> void:
+	texto.visible_characters = -1
 	_digitando = false
 	seta.visible = true
 	texto_completo.emit(indice)

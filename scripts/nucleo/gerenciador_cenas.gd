@@ -11,15 +11,18 @@ const ROTAS := {
 	"introducao": "res://scenes/introducao/introducao.tscn",
 	"triagem": "res://scenes/triagem/triagem.tscn",
 	"batalha": "res://scenes/batalha/batalha.tscn",
+	"resumo": "res://scenes/resumo_dia/resumo_dia.tscn",
 }
 
 ## Ordem das etapas apos apertar JOGAR. Para encaixar uma tela nova
 ## (ex.: "prontuario"), registre a rota acima e coloque o nome aqui.
-const FLUXO_JOGO: Array[String] = ["introducao", "triagem", "batalha"]
+const FLUXO_JOGO: Array[String] = ["introducao", "triagem", "batalha", "resumo"]
 
 const DURACAO_FADE := 0.4
 
 var etapa_atual := -1
+## Dados que uma cena deixa para a proxima (ex.: a batalha entrega o resultado ao resumo).
+var dados_partida: Dictionary = {}
 var _ocupado := false
 var _cortina: ColorRect
 
@@ -52,6 +55,7 @@ func em_fluxo() -> bool:
 ## `cortina_ja_fechada` = true quando a cena de origem ja escureceu a tela.
 func iniciar_jogo(cortina_ja_fechada := false) -> void:
 	etapa_atual = -1
+	dados_partida = {}
 	avancar(cortina_ja_fechada)
 
 
@@ -91,6 +95,12 @@ func ir_para(rota: String, cortina_ja_fechada := false) -> void:
 		await entrada.finished
 
 	get_tree().change_scene_to_file(ROTAS[rota])
+	# Cada cena tem a sua musica; a Home controla a propria (e para a atual).
+	var audio := get_node_or_null("/root/GerenciadorAudio")
+	if audio != null and rota != "home":
+		audio.call("tocar_musica_cena", rota)
+	elif audio != null:
+		audio.call("parar_musica", 0.6)
 	await get_tree().process_frame
 	await get_tree().process_frame
 
