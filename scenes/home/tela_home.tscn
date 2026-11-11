@@ -1,29 +1,29 @@
 [gd_scene format=3 uid="uid://cyncekb26dkpp"]
 
-[ext_resource type="Theme" path="res://resources/tema_ui.tres" id="theme"]
-[ext_resource type="PackedScene" path="res://scenes/componentes/painel_configuracoes.tscn" id="painel"]
-[ext_resource type="Script" path="res://scripts/home/tela_home.gd" id="script"]
-[ext_resource type="Script" path="res://scripts/home/ecg_linha.gd" id="ecg"]
-[ext_resource type="Script" path="res://scripts/home/cenario_pixel.gd" id="pixel"]
-[ext_resource type="Script" path="res://scripts/home/cenario_luzes.gd" id="luzes"]
-[ext_resource type="Script" path="res://scripts/home/cenario_particulas.gd" id="part"]
-[ext_resource type="FontFile" path="res://assets/fontes/PressStart2P-Regular.ttf" id="fonte"]
-[ext_resource type="Texture2D" path="res://assets/home/background/cenario_base.png" id="tex_0"]
-[ext_resource type="Texture2D" path="res://assets/home/logo/letra_v.png" id="tex_1"]
-[ext_resource type="Texture2D" path="res://assets/home/logo/letra_e.png" id="tex_2"]
-[ext_resource type="Texture2D" path="res://assets/home/logo/letra_t.png" id="tex_3"]
-[ext_resource type="Texture2D" path="res://assets/home/logo/fio_de_la.png" id="tex_4"]
-[ext_resource type="Texture2D" path="res://assets/home/logo/novelo.png" id="tex_5"]
-[ext_resource type="Texture2D" path="res://assets/home/logo/subtitulo_residencia_veterinaria.png" id="tex_6"]
-[ext_resource type="Texture2D" path="res://assets/animais/tigre/exportado/tigre_curado_sentado.png" id="tex_7"]
-[ext_resource type="Texture2D" path="res://assets/animais/fibonacci/exportado/fibonacci_curado_sentado.png" id="tex_8"]
-[ext_resource type="Texture2D" path="res://assets/home/ui/botao_principal.png" id="tex_9"]
-[ext_resource type="Texture2D" path="res://assets/home/ui/botao_principal_selecionado.png" id="tex_10"]
-[ext_resource type="Texture2D" path="res://assets/home/ui/botao_normal.png" id="tex_11"]
-[ext_resource type="Texture2D" path="res://assets/home/ui/botao_selecionado.png" id="tex_12"]
-[ext_resource type="Texture2D" path="res://assets/home/ui/coracao_alma.png" id="tex_13"]
-[ext_resource type="Texture2D" path="res://assets/ui/moldura_retrato.png" id="tex_14"]
-[ext_resource type="Texture2D" path="res://assets/animais/capivara/exportado/capivara_retratos.png" id="folha_capi"]
+[ext_resource type="Script" uid="uid://143ergqyi3nt" path="res://scripts/home/ecg_linha.gd" id="ecg"]
+[ext_resource type="Texture2D" uid="uid://y1p8trhwahj6" path="res://assets/animais/capivara/exportado/capivara_retratos.png" id="folha_capi"]
+[ext_resource type="FontFile" uid="uid://ovqsb04oaml7" path="res://assets/fontes/PressStart2P-Regular.ttf" id="fonte"]
+[ext_resource type="Script" uid="uid://cfrk7ppogr65n" path="res://scripts/home/cenario_luzes.gd" id="luzes"]
+[ext_resource type="PackedScene" uid="uid://bd5kdsictp0xy" path="res://scenes/componentes/painel_configuracoes.tscn" id="painel"]
+[ext_resource type="Script" uid="uid://cjffb12yjcs00" path="res://scripts/home/cenario_particulas.gd" id="part"]
+[ext_resource type="Script" uid="uid://bydimxd3p72pe" path="res://scripts/home/cenario_pixel.gd" id="pixel"]
+[ext_resource type="Script" uid="uid://dqqu0ed1k80s2" path="res://scripts/home/tela_home.gd" id="script"]
+[ext_resource type="Texture2D" uid="uid://qaqyox2emo83" path="res://assets/home/background/cenario_base.png" id="tex_0"]
+[ext_resource type="Texture2D" uid="uid://ccnrtyt1wf73q" path="res://assets/home/logo/letra_v.png" id="tex_1"]
+[ext_resource type="Texture2D" uid="uid://dq5iigd7aubt7" path="res://assets/home/logo/letra_e.png" id="tex_2"]
+[ext_resource type="Texture2D" uid="uid://cicnhjojnp6cu" path="res://assets/home/logo/letra_t.png" id="tex_3"]
+[ext_resource type="Texture2D" uid="uid://c0et82xbdp3uc" path="res://assets/home/logo/fio_de_la.png" id="tex_4"]
+[ext_resource type="Texture2D" uid="uid://5fe787637iii" path="res://assets/home/logo/novelo.png" id="tex_5"]
+[ext_resource type="Texture2D" uid="uid://brr8b05nvas0j" path="res://assets/home/logo/subtitulo_residencia_veterinaria.png" id="tex_6"]
+[ext_resource type="Texture2D" uid="uid://co83hhvyi33fu" path="res://assets/animais/tigre/exportado/tigre_curado_sentado.png" id="tex_7"]
+[ext_resource type="Texture2D" uid="uid://bg1ii5rn2mm6s" path="res://assets/animais/fibonacci/exportado/fibonacci_curado_sentado.png" id="tex_8"]
+[ext_resource type="Texture2D" uid="uid://b7upglw1lgo8j" path="res://assets/home/ui/botao_principal.png" id="tex_9"]
+[ext_resource type="Texture2D" uid="uid://drwul8cq26wei" path="res://assets/home/ui/botao_principal_selecionado.png" id="tex_10"]
+[ext_resource type="Texture2D" uid="uid://bc3vvgcmai1b4" path="res://assets/home/ui/botao_normal.png" id="tex_11"]
+[ext_resource type="Texture2D" uid="uid://ymtmhg2pkua0" path="res://assets/home/ui/botao_selecionado.png" id="tex_12"]
+[ext_resource type="Texture2D" uid="uid://1s6y5krlwvj2" path="res://assets/home/ui/coracao_alma.png" id="tex_13"]
+[ext_resource type="Texture2D" uid="uid://cllwjaddqdibe" path="res://assets/ui/moldura_retrato.png" id="tex_14"]
+[ext_resource type="Theme" uid="uid://bqyiqy1l10ysk" path="res://resources/tema_ui.tres" id="theme"]
 
 [sub_resource type="CanvasItemMaterial" id="Mat_add"]
 blend_mode = 1
@@ -36,7 +36,7 @@ region = Rect2(0, 0, 96, 80)
 atlas = ExtResource("folha_capi")
 region = Rect2(288, 80, 96, 80)
 
-[node name="TelaHome" type="Control"]
+[node name="TelaHome" type="Control" unique_id=1753728686]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,8 +45,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("theme")
 script = ExtResource("script")
+metadata/_edit_vertical_guides_ = [-125.0]
 
-[node name="Fundo" type="ColorRect" parent="."]
+[node name="Fundo" type="ColorRect" parent="." unique_id=1607446444]
 unique_name_in_owner = true
 layout_mode = 0
 anchor_right = 1.0
@@ -56,437 +57,386 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.04, 0.055, 0.075, 1)
 
-[node name="Cenario" type="Control" parent="."]
+[node name="Cenario" type="Control" parent="." unique_id=1091615592]
 unique_name_in_owner = true
-layout_mode = 0
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Base" type="TextureRect" parent="Cenario"]
+[node name="Base" type="TextureRect" parent="Cenario" unique_id=1682330121]
+texture_filter = 1
 layout_mode = 0
-offset_left = 0
-offset_top = 0
-offset_right = 1280
-offset_bottom = 720
+offset_right = 1280.0
+offset_bottom = 720.0
 mouse_filter = 2
 texture = ExtResource("tex_0")
 expand_mode = 1
-stretch_mode = 0
-texture_filter = 1
 
-[node name="Pixel" type="Control" parent="Cenario"]
+[node name="Pixel" type="Control" parent="Cenario" unique_id=642094624]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 0
-offset_top = 0
-offset_right = 640
-offset_bottom = 360
-mouse_filter = 2
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
 scale = Vector2(2, 2)
+mouse_filter = 2
 script = ExtResource("pixel")
 
-[node name="Luzes" type="Control" parent="Cenario"]
+[node name="Luzes" type="Control" parent="Cenario" unique_id=502145168]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 0
-offset_top = 0
-offset_right = 640
-offset_bottom = 360
-mouse_filter = 2
-scale = Vector2(2, 2)
 material = SubResource("Mat_add")
-script = ExtResource("luzes")
-densidade = 2.0
-
-[node name="Particulas" type="Control" parent="Cenario"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 0
-offset_top = 0
-offset_right = 640
-offset_bottom = 360
-mouse_filter = 2
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
 scale = Vector2(2, 2)
-script = ExtResource("part")
-densidade = 2.0
+mouse_filter = 2
+script = ExtResource("luzes")
 
-[node name="LetraV" type="TextureRect" parent="."]
+[node name="Particulas" type="Control" parent="Cenario" unique_id=729862854]
 unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+scale = Vector2(2, 2)
+mouse_filter = 2
+script = ExtResource("part")
+
+[node name="LetraV" type="TextureRect" parent="." unique_id=1252185734]
+unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 0
-offset_left = 378
+offset_left = 378.0
 offset_top = 98.6
 offset_right = 511.4
 offset_bottom = 231.2
+pivot_offset = Vector2(66.7, 66.3)
 mouse_filter = 2
 texture = ExtResource("tex_1")
 expand_mode = 1
-stretch_mode = 0
-texture_filter = 2
-pivot_offset = Vector2(66.7, 66.3)
 
-[node name="LetraE1" type="TextureRect" parent="."]
+[node name="LetraE1" type="TextureRect" parent="." unique_id=112646993]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 0
 offset_left = 508.6
 offset_top = 98.6
-offset_right = 642
+offset_right = 642.0
 offset_bottom = 231.2
+pivot_offset = Vector2(66.7, 66.3)
 mouse_filter = 2
 texture = ExtResource("tex_2")
 expand_mode = 1
-stretch_mode = 0
-texture_filter = 2
-pivot_offset = Vector2(66.7, 66.3)
 
-[node name="LetraE2" type="TextureRect" parent="."]
+[node name="LetraE2" type="TextureRect" parent="." unique_id=1307317460]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 0
 offset_left = 639.13
 offset_top = 98.6
 offset_right = 772.53
 offset_bottom = 231.2
+pivot_offset = Vector2(66.7, 66.3)
 mouse_filter = 2
 texture = ExtResource("tex_2")
 expand_mode = 1
-stretch_mode = 0
-texture_filter = 2
-pivot_offset = Vector2(66.7, 66.3)
 
-[node name="LetraT" type="TextureRect" parent="."]
+[node name="LetraT" type="TextureRect" parent="." unique_id=1802720497]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 0
-offset_left = 772
+offset_left = 772.0
 offset_top = 98.6
 offset_right = 890.6
 offset_bottom = 231.2
+pivot_offset = Vector2(59.3, 66.3)
 mouse_filter = 2
 texture = ExtResource("tex_3")
 expand_mode = 1
-stretch_mode = 0
-texture_filter = 2
-pivot_offset = Vector2(59.3, 66.3)
 
-[node name="FioClip" type="Control" parent="."]
+[node name="FioClip" type="Control" parent="." unique_id=801631134]
 unique_name_in_owner = true
-layout_mode = 0
+clip_contents = true
+anchors_preset = 0
 offset_left = 335.33
 offset_top = 210.4
 offset_right = 335.33
 offset_bottom = 255.2
 mouse_filter = 2
-clip_contents = true
 
-[node name="Fio" type="TextureRect" parent="FioClip"]
+[node name="Fio" type="TextureRect" parent="FioClip" unique_id=350259073]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 0
-offset_left = 0
-offset_top = 0
-offset_right = 608
+offset_right = 608.0
 offset_bottom = 44.8
 mouse_filter = 2
 texture = ExtResource("tex_4")
 expand_mode = 1
-stretch_mode = 0
-texture_filter = 1
 
-[node name="Novelo" type="TextureRect" parent="."]
+[node name="Novelo" type="TextureRect" parent="." unique_id=1404220762]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
 layout_mode = 0
-offset_left = 0
-offset_top = 0
 offset_right = 83.2
 offset_bottom = 83.2
+pivot_offset = Vector2(41.6, 41.6)
 mouse_filter = 2
 texture = ExtResource("tex_5")
 expand_mode = 1
-stretch_mode = 0
-texture_filter = 1
-pivot_offset = Vector2(41.6, 41.6)
-modulate = Color(1, 1, 1, 0)
 
-[node name="Subtitulo" type="TextureRect" parent="."]
+[node name="Subtitulo" type="TextureRect" parent="." unique_id=928809906]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 0
 offset_left = 435.4
 offset_top = 260.6
-offset_right = 842
-offset_bottom = 278
+offset_right = 842.0
+offset_bottom = 278.0
 mouse_filter = 2
 texture = ExtResource("tex_6")
 expand_mode = 1
-stretch_mode = 0
-texture_filter = 2
 
-[node name="PetTigre" type="TextureRect" parent="."]
+[node name="PetTigre" type="TextureRect" parent="." unique_id=2046268180]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 0
 offset_left = 76.8
 offset_top = 378.4
 offset_right = 396.8
 offset_bottom = 698.4
+pivot_offset = Vector2(160, 320)
 mouse_filter = 2
 texture = ExtResource("tex_7")
 expand_mode = 1
-stretch_mode = 0
-texture_filter = 1
-pivot_offset = Vector2(160, 320)
 
-[node name="PetFibonacci" type="TextureRect" parent="."]
+[node name="PetFibonacci" type="TextureRect" parent="." unique_id=1406010019]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 0
 offset_left = 883.2
 offset_top = 378.4
 offset_right = 1203.2
 offset_bottom = 698.4
+pivot_offset = Vector2(160, 320)
 mouse_filter = 2
 texture = ExtResource("tex_8")
 expand_mode = 1
-stretch_mode = 0
-texture_filter = 1
-pivot_offset = Vector2(160, 320)
 
-[node name="BtnJogar" type="TextureButton" parent="."]
+[node name="BtnJogar" type="TextureButton" parent="." unique_id=157855209]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 0
 offset_left = 466.6
-offset_top = 362
+offset_top = 362.0
 offset_right = 812.6
-offset_bottom = 458
+offset_bottom = 458.0
 texture_normal = ExtResource("tex_9")
 ignore_texture_size = true
 stretch_mode = 0
-texture_filter = 2
-focus_mode = 2
 
-[node name="BtnJogarSel" type="TextureRect" parent="BtnJogar"]
+[node name="BtnJogarSel" type="TextureRect" parent="BtnJogar" unique_id=732765595]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 2
 layout_mode = 0
-offset_left = 0
-offset_top = 0
-offset_right = 346
-offset_bottom = 96
+offset_right = 346.0
+offset_bottom = 96.0
 mouse_filter = 2
 texture = ExtResource("tex_10")
 expand_mode = 1
-stretch_mode = 0
-texture_filter = 2
-modulate = Color(1, 1, 1, 0)
 
-[node name="BtnJogarTexto" type="Label" parent="BtnJogar"]
+[node name="BtnJogarTexto" type="Label" parent="BtnJogar" unique_id=1302103098]
 layout_mode = 0
-offset_right = 346
-offset_bottom = 90
-mouse_filter = 2
-theme_override_fonts/font = ExtResource("fonte")
-theme_override_font_sizes/font_size = 32
+offset_right = 346.0
+offset_bottom = 90.0
 theme_override_colors/font_color = Color(1, 0.953, 0.839, 1)
 theme_override_colors/font_shadow_color = Color(0.227, 0.141, 0.082, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 32
 text = "JOGAR"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BtnConfiguracoes" type="TextureButton" parent="."]
+[node name="BtnConfiguracoes" type="TextureButton" parent="." unique_id=1523348833]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 0
 offset_left = 466.6
-offset_top = 470
+offset_top = 470.0
 offset_right = 812.6
-offset_bottom = 546
+offset_bottom = 546.0
 texture_normal = ExtResource("tex_11")
 ignore_texture_size = true
 stretch_mode = 0
-texture_filter = 2
-focus_mode = 2
 
-[node name="BtnConfiguracoesSel" type="TextureRect" parent="BtnConfiguracoes"]
+[node name="BtnConfiguracoesSel" type="TextureRect" parent="BtnConfiguracoes" unique_id=849540658]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 2
 layout_mode = 0
-offset_left = 0
-offset_top = 0
-offset_right = 346
-offset_bottom = 76
+offset_right = 346.0
+offset_bottom = 76.0
 mouse_filter = 2
 texture = ExtResource("tex_12")
 expand_mode = 1
-stretch_mode = 0
-texture_filter = 2
-modulate = Color(1, 1, 1, 0)
 
-[node name="BtnConfiguracoesTexto" type="Label" parent="BtnConfiguracoes"]
+[node name="BtnConfiguracoesTexto" type="Label" parent="BtnConfiguracoes" unique_id=1735709627]
 layout_mode = 0
-offset_right = 346
-offset_bottom = 70
-mouse_filter = 2
-theme_override_fonts/font = ExtResource("fonte")
-theme_override_font_sizes/font_size = 24
+offset_right = 346.0
+offset_bottom = 70.0
 theme_override_colors/font_color = Color(1, 0.953, 0.839, 1)
 theme_override_colors/font_shadow_color = Color(0.227, 0.141, 0.082, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 24
 text = "CONFIGURAÇÕES"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BtnFecharJogo" type="TextureButton" parent="."]
+[node name="BtnFecharJogo" type="TextureButton" parent="." unique_id=1297029143]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 0
 offset_left = 466.6
-offset_top = 558
+offset_top = 558.0
 offset_right = 812.6
-offset_bottom = 634
+offset_bottom = 634.0
 texture_normal = ExtResource("tex_11")
 ignore_texture_size = true
 stretch_mode = 0
-texture_filter = 2
-focus_mode = 2
 
-[node name="BtnFecharJogoSel" type="TextureRect" parent="BtnFecharJogo"]
+[node name="BtnFecharJogoSel" type="TextureRect" parent="BtnFecharJogo" unique_id=1560888776]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 2
 layout_mode = 0
-offset_left = 0
-offset_top = 0
-offset_right = 346
-offset_bottom = 76
+offset_right = 346.0
+offset_bottom = 76.0
 mouse_filter = 2
 texture = ExtResource("tex_12")
 expand_mode = 1
-stretch_mode = 0
-texture_filter = 2
-modulate = Color(1, 1, 1, 0)
 
-[node name="BtnFecharJogoTexto" type="Label" parent="BtnFecharJogo"]
+[node name="BtnFecharJogoTexto" type="Label" parent="BtnFecharJogo" unique_id=2139942552]
 layout_mode = 0
-offset_right = 346
-offset_bottom = 70
-mouse_filter = 2
-theme_override_fonts/font = ExtResource("fonte")
-theme_override_font_sizes/font_size = 24
+offset_right = 346.0
+offset_bottom = 70.0
 theme_override_colors/font_color = Color(1, 0.953, 0.839, 1)
 theme_override_colors/font_shadow_color = Color(0.227, 0.141, 0.082, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 24
 text = "FECHAR JOGO"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Alma" type="TextureRect" parent="."]
+[node name="Alma" type="TextureRect" parent="." unique_id=1951731298]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 0
 offset_left = 420.6
 offset_top = 396.8
-offset_right = 444
+offset_right = 444.0
 offset_bottom = 417.4
+pivot_offset = Vector2(11.7, 10.3)
 mouse_filter = 2
 texture = ExtResource("tex_13")
 expand_mode = 1
-stretch_mode = 0
-texture_filter = 2
-pivot_offset = Vector2(11.7, 10.3)
 
-[node name="Dica" type="Control" parent="."]
+[node name="Dica" type="Control" parent="." unique_id=818502799]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 0
-offset_top = 672
-offset_right = 1280
-offset_bottom = 696
+anchors_preset = 0
+offset_top = 672.0
+offset_right = 1280.0
+offset_bottom = 696.0
 mouse_filter = 2
 
-[node name="DicaCima" type="Label" parent="Dica"]
+[node name="DicaCima" type="Label" parent="Dica" unique_id=682617726]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 400
-offset_top = 0
-offset_right = 416
-offset_bottom = 24
-mouse_filter = 2
+offset_left = 400.0
+offset_right = 416.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0.95, 0.89, 0.78, 1)
 theme_override_colors/font_shadow_color = Color(0.11, 0.075, 0.047, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("fonte")
 theme_override_font_sizes/font_size = 16
-theme_override_colors/font_color = Color(0.95, 0.89, 0.78, 1)
 text = "↑"
-horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="DicaBaixo" type="Label" parent="Dica"]
+[node name="DicaBaixo" type="Label" parent="Dica" unique_id=879092277]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 432
-offset_top = 0
-offset_right = 448
-offset_bottom = 24
-mouse_filter = 2
+offset_left = 432.0
+offset_right = 448.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0.95, 0.89, 0.78, 1)
 theme_override_colors/font_shadow_color = Color(0.11, 0.075, 0.047, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("fonte")
 theme_override_font_sizes/font_size = 16
-theme_override_colors/font_color = Color(0.95, 0.89, 0.78, 1)
 text = "↓"
-horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="DicaTexto" type="Label" parent="Dica"]
+[node name="DicaTexto" type="Label" parent="Dica" unique_id=1892821701]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 464
-offset_top = 0
-offset_right = 880
-offset_bottom = 24
-mouse_filter = 2
+offset_left = 464.0
+offset_right = 880.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(0.95, 0.89, 0.78, 1)
 theme_override_colors/font_shadow_color = Color(0.11, 0.075, 0.047, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("fonte")
 theme_override_font_sizes/font_size = 16
-theme_override_colors/font_color = Color(0.95, 0.89, 0.78, 1)
 text = "ESCOLHER · ENTER CONFIRMAR"
-horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="Versao" type="Label" parent="."]
+[node name="Versao" type="Label" parent="." unique_id=303690717]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 16
-offset_top = 698
-offset_right = 416
-offset_bottom = 712
-mouse_filter = 2
+offset_left = 16.0
+offset_top = 698.0
+offset_right = 416.0
+offset_bottom = 712.0
+theme_override_colors/font_color = Color(0.91, 0.85, 0.72, 0.85)
 theme_override_colors/font_shadow_color = Color(0.11, 0.075, 0.047, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("fonte")
 theme_override_font_sizes/font_size = 8
-theme_override_colors/font_color = Color(0.91, 0.85, 0.72, 0.85)
 text = "v0.1 · CAPIVARA STUDIOS"
-horizontal_alignment = 0
 vertical_alignment = 1
 
-[node name="Estudio" type="Control" parent="."]
+[node name="Estudio" type="Control" parent="." unique_id=1974855568]
 unique_name_in_owner = true
-layout_mode = 0
+anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Selo" type="Control" parent="Estudio"]
+[node name="Selo" type="Control" parent="Estudio" unique_id=1226650492]
 unique_name_in_owner = true
-layout_mode = 0
+anchors_preset = 0
 offset_left = 505.3
-offset_top = 192
+offset_top = 192.0
 offset_right = 774.7
 offset_bottom = 419.4
-mouse_filter = 2
 pivot_offset = Vector2(134.7, 113.7)
+mouse_filter = 2
 
-[node name="FotoNeutra" type="TextureRect" parent="Estudio/Selo"]
+[node name="FotoNeutra" type="TextureRect" parent="Estudio/Selo" unique_id=2002346526]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 0
 offset_left = 24.25
 offset_top = 25.01
@@ -495,11 +445,11 @@ offset_bottom = 202.39
 mouse_filter = 2
 texture = SubResource("atlas_neutra")
 expand_mode = 1
-stretch_mode = 0
-texture_filter = 1
 
-[node name="FotoCoracao" type="TextureRect" parent="Estudio/Selo"]
+[node name="FotoCoracao" type="TextureRect" parent="Estudio/Selo" unique_id=992194655]
 unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
 layout_mode = 0
 offset_left = 24.25
 offset_top = 25.01
@@ -508,67 +458,57 @@ offset_bottom = 202.39
 mouse_filter = 2
 texture = SubResource("atlas_coracao")
 expand_mode = 1
-stretch_mode = 0
-texture_filter = 1
-modulate = Color(1, 1, 1, 0)
 
-[node name="Moldura" type="TextureRect" parent="Estudio/Selo"]
+[node name="Moldura" type="TextureRect" parent="Estudio/Selo" unique_id=1455306550]
+texture_filter = 1
 layout_mode = 0
-offset_left = 0
-offset_top = 0
 offset_right = 269.4
 offset_bottom = 227.4
 mouse_filter = 2
 texture = ExtResource("tex_14")
 expand_mode = 1
-stretch_mode = 0
-texture_filter = 1
 
-[node name="TxtNome" type="Label" parent="Estudio"]
+[node name="TxtNome" type="Label" parent="Estudio" unique_id=1233693989]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 0
 offset_top = 444.9
-offset_right = 1280
+offset_right = 1280.0
 offset_bottom = 488.9
-mouse_filter = 2
-theme_override_fonts/font = ExtResource("fonte")
-theme_override_font_sizes/font_size = 40
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.24, 0.33, 0.45, 1)
 theme_override_constants/shadow_offset_x = 4
 theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("fonte")
+theme_override_font_sizes/font_size = 40
 text = "CAPIVARA STUDIOS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TxtApresenta" type="Label" parent="Estudio"]
+[node name="TxtApresenta" type="Label" parent="Estudio" unique_id=520130803]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 0
 offset_top = 508.9
-offset_right = 1280
+offset_right = 1280.0
 offset_bottom = 532.9
-mouse_filter = 2
+theme_override_colors/font_color = Color(0.56, 0.64, 0.76, 1)
 theme_override_fonts/font = ExtResource("fonte")
 theme_override_font_sizes/font_size = 16
-theme_override_colors/font_color = Color(0.56, 0.64, 0.76, 1)
 text = "APRESENTA"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EcgIntro" type="Control" parent="."]
+[node name="EcgIntro" type="Control" parent="." unique_id=430243474]
 unique_name_in_owner = true
-layout_mode = 0
+anchors_preset = 0
 offset_left = 140.8
-offset_top = 232
+offset_top = 232.0
 offset_right = 1139.2
-offset_bottom = 488
+offset_bottom = 488.0
 mouse_filter = 2
 script = ExtResource("ecg")
 espessura = 5.0
 
-[node name="Cortina" type="ColorRect" parent="."]
+[node name="Cortina" type="ColorRect" parent="." unique_id=108649923]
 unique_name_in_owner = true
 layout_mode = 0
 anchor_right = 1.0
@@ -578,19 +518,16 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="PainelConfiguracoes" parent="." instance=ExtResource("painel")]
+[node name="PainelConfiguracoes" parent="." unique_id=562795432 instance=ExtResource("painel")]
 unique_name_in_owner = true
 visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 1
 
-[node name="ConfirmacaoFechar" type="ConfirmationDialog" parent="."]
+[node name="ConfirmacaoFechar" type="ConfirmationDialog" parent="." unique_id=1427951417]
 unique_name_in_owner = true
+oversampling_override = 1.0
 title = "Fechar Jogo"
+size = Vector2i(281, 100)
 ok_button_text = "Sim, fechar"
 dialog_text = "Tem certeza que deseja sair do jogo?"
 cancel_button_text = "Cancelar"
