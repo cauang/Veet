@@ -4,7 +4,7 @@
     { "quem": "euler", "nome": "", "expressao": "neutro", "anim": "idle", "sem_retrato": true,
       "texto": "* O Prof. Euler entra com duas caixas de transporte." },
     { "quem": "euler", "nome": "Prof. Euler", "expressao": "neutro", "anim": "falar",
-      "texto": "Bom dia, aluno. O módulo de comportamento do Fibonacci apresentou uma anomalia de eficiência nas últimas 24 horas." },
+      "texto": "Boa noite, aluno. O módulo de comportamento do Fibonacci apresentou uma anomalia de eficiência nas últimas 24 horas." },
     { "quem": "helena", "nome": "Dra. Helena", "expressao": "falando", "anim": "falar",
       "texto": "Esse é o Prof. Euler, tutor do Fibonacci e do Sultão. Ouça o relato com atenção." },
     { "quem": "euler", "nome": "Prof. Euler", "expressao": "falando", "anim": "falar",

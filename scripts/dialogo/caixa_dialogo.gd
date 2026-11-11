@@ -11,7 +11,7 @@ extends Control
 ##   { "id": "introducao",
 ##     "falas": [ { "quem": "helena", "nome": "Dra. Helena",
 ##                  "expressao": "sorrindo", "anim": "acenar",
-##                  "texto": "Bom dia, residente!" }, ... ] }
+##                  "texto": "Boa noite, residente!" }, ... ] }
 ## "quem" e o id do personagem (usado para achar o retrato); "expressao" e um de
 ## neutro / falando / sorrindo / preocupado / surpreso. Campos extras ("anim",
 ## "evento"...) sao repassados no sinal fala_iniciada para a cena reagir.

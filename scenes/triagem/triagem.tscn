@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/triagem/triagem.gd" id="1_intro"]
-[ext_resource type="Texture2D" path="res://assets/home/background/fundo_ambulatorio_completo.png" id="2_fundo"]
+[ext_resource type="PackedScene" path="res://scenes/componentes/cenario_clinica.tscn" id="2_fundo"]
 [ext_resource type="PackedScene" path="res://scenes/personagens/personagem.tscn" id="3_personagem"]
 [ext_resource type="PackedScene" path="res://scenes/dialogo/caixa_dialogo.tscn" id="4_caixa"]
 
@@ -14,18 +14,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_intro")
 
-[node name="Fundo" type="TextureRect" parent="."]
-texture_filter = 1
+[node name="Fundo" parent="." instance=ExtResource("2_fundo")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("2_fundo")
-expand_mode = 1
-stretch_mode = 6
 
 [node name="Palco" type="Node2D" parent="."]
 
