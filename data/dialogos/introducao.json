@@ -1,0 +1,15 @@
+{
+  "id": "introducao",
+  "falas": [
+    { "quem": "helena", "nome": "Dra. Helena", "expressao": "sorrindo", "anim": "acenar",
+      "texto": "Bom dia, residente! Eu sou a Dra. Helena, sua preceptora neste plantão." },
+    { "quem": "helena", "nome": "Dra. Helena", "expressao": "falando", "anim": "falar",
+      "texto": "Aqui na Clínica Escola da UNIFOR, ninguém é inimigo. Quem ataca é o medo e a dor do paciente." },
+    { "quem": "protagonista", "nome": "", "expressao": "neutro", "anim": "idle", "sem_retrato": true,
+      "texto": "* Você assente e ajeita o jaleco." },
+    { "quem": "helena", "nome": "Dra. Helena", "expressao": "neutro", "anim": "falar",
+      "texto": "Paciente com medo não colabora, residente. Acalme primeiro, examine depois." },
+    { "quem": "helena", "nome": "Dra. Helena", "expressao": "sorrindo", "anim": "acenar",
+      "texto": "Seu primeiro paciente já chegou. Vamos para a triagem!" }
+  ]
+}

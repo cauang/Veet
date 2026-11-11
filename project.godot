@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GerenciadorConfiguracoes="res://scripts/nucleo/gerenciador_configuracoes.gd"
 GerenciadorAudio="res://scripts/nucleo/gerenciador_audio.gd"
+GerenciadorCenas="*res://scripts/nucleo/gerenciador_cenas.gd"
 
 [display]
 

@@ -353,7 +353,7 @@ func _on_jogar() -> void:
 	_menu_pronto = false
 	var t := create_tween()
 	t.tween_property(cortina, "color:a", 1.0, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-	t.tween_callback(get_tree().change_scene_to_file.bind("res://scenes/home/cena_placeholder.tscn"))
+	t.tween_callback(GerenciadorCenas.iniciar_jogo.bind(true))
 
 
 func _on_configuracoes() -> void:

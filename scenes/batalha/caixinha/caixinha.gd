@@ -146,8 +146,8 @@ func _on_vida_zerada() -> void:
 
 
 func _on_tentar_novamente() -> void:
-	get_tree().reload_current_scene()
+	GerenciadorCenas.reiniciar_etapa()
 
 
 func _on_voltar_ao_menu() -> void:
-	get_tree().change_scene_to_file("res://scenes/home/tela_home.tscn")
+	GerenciadorCenas.voltar_ao_menu()
