@@ -10,7 +10,7 @@ const ROTAS := {
 	"home": "res://scenes/home/tela_home.tscn",
 	"introducao": "res://scenes/introducao/introducao.tscn",
 	"triagem": "res://scenes/triagem/triagem.tscn",
-	"batalha": "res://scenes/batalha/caixinha/caixinha.tscn",
+	"batalha": "res://scenes/batalha/batalha.tscn",
 }
 
 ## Ordem das etapas apos apertar JOGAR. Para encaixar uma tela nova

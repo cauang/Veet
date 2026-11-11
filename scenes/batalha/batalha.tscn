@@ -1,0 +1,249 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/batalha/batalha.gd" id="1_batalha"]
+[ext_resource type="PackedScene" path="res://scenes/componentes/cenario_clinica.tscn" id="2_cenario"]
+[ext_resource type="PackedScene" path="res://scenes/batalha/caixinha/caixinha.tscn" id="3_caixinha"]
+[ext_resource type="Texture2D" path="res://assets/patinha/patinha.png" id="4_patinha"]
+[ext_resource type="FontFile" path="res://assets/fontes/PressStart2P-Regular.ttf" id="5_fonte"]
+[ext_resource type="Texture2D" path="res://assets/animais/fibonacci/exportado/fibonacci_neutro.png" id="6_gato"]
+
+[sub_resource type="StyleBoxFlat" id="Moldura"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="BarraFundo"]
+bg_color = Color(0.1, 0.1, 0.14, 0.9)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.89, 0.8, 0.64, 1)
+
+[sub_resource type="StyleBoxFlat" id="BarraDiagnostico"]
+bg_color = Color(0.659, 0.835, 0.729, 1)
+
+[sub_resource type="StyleBoxFlat" id="BarraEstresse"]
+bg_color = Color(0.89, 0.6, 0.36, 1)
+
+[sub_resource type="StyleBoxFlat" id="PainelFim"]
+bg_color = Color(0, 0, 0, 0.95)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.949, 0.839, 0.459, 1)
+
+[node name="Batalha" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_batalha")
+
+[node name="Fundo" parent="." instance=ExtResource("2_cenario")]
+modulate = Color(0.48, 0.45, 0.5, 1)
+layout_mode = 1
+
+[node name="Paciente" type="TextureRect" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 0
+offset_left = 440.0
+offset_top = 20.0
+offset_right = 840.0
+offset_bottom = 340.0
+mouse_filter = 2
+texture = ExtResource("6_gato")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Caixinha" parent="." instance=ExtResource("3_caixinha")]
+unique_name_in_owner = true
+iniciar_automatico = false
+
+[node name="Moldura" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 361.0
+offset_top = 356.0
+offset_right = 919.0
+offset_bottom = 664.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("Moldura")
+
+[node name="Margem" type="MarginContainer" parent="Moldura"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 18
+
+[node name="TextoCaixa" type="Label" parent="Moldura/Margem"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/line_spacing = 12
+theme_override_fonts/font = ExtResource("5_fonte")
+theme_override_font_sizes/font_size = 14
+autowrap_mode = 3
+
+[node name="ListaOpcoes" type="VBoxContainer" parent="Moldura/Margem"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="Menu" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 70.0
+offset_top = 672.0
+offset_right = 1210.0
+offset_bottom = 714.0
+theme_override_constants/separation = 20
+
+[node name="Cursor" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_right = 28.0
+offset_bottom = 28.0
+mouse_filter = 2
+texture = ExtResource("4_patinha")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Barras" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1000.0
+offset_top = 66.0
+offset_right = 1250.0
+offset_bottom = 170.0
+mouse_filter = 2
+
+[node name="TxtDiagnostico" type="Label" parent="Barras"]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 18.0
+theme_override_fonts/font = ExtResource("5_fonte")
+theme_override_font_sizes/font_size = 11
+text = "DIAGNÓSTICO"
+horizontal_alignment = 2
+
+[node name="BarraDiagnostico" type="ProgressBar" parent="Barras"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 22.0
+offset_right = 250.0
+offset_bottom = 44.0
+theme_override_styles/background = SubResource("BarraFundo")
+theme_override_styles/fill = SubResource("BarraDiagnostico")
+show_percentage = false
+
+[node name="TxtEstresse" type="Label" parent="Barras"]
+layout_mode = 0
+offset_top = 58.0
+offset_right = 250.0
+offset_bottom = 76.0
+theme_override_fonts/font = ExtResource("5_fonte")
+theme_override_font_sizes/font_size = 11
+text = "ESTRESSE"
+horizontal_alignment = 2
+
+[node name="BarraEstresse" type="ProgressBar" parent="Barras"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 80.0
+offset_right = 250.0
+offset_bottom = 98.0
+theme_override_styles/background = SubResource("BarraFundo")
+theme_override_styles/fill = SubResource("BarraEstresse")
+max_value = 10.0
+show_percentage = false
+
+[node name="Resolvido" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Escuro" type="ColorRect" parent="Resolvido"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.65)
+
+[node name="Painel" type="PanelContainer" parent="Resolvido"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -380.0
+offset_top = -250.0
+offset_right = 380.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("PainelFim")
+
+[node name="Margem" type="MarginContainer" parent="Resolvido/Painel"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 26
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 26
+
+[node name="Coluna" type="VBoxContainer" parent="Resolvido/Painel/Margem"]
+layout_mode = 2
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Titulo" type="Label" parent="Resolvido/Painel/Margem/Coluna"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.949, 0.839, 0.459, 1)
+theme_override_fonts/font = ExtResource("5_fonte")
+theme_override_font_sizes/font_size = 26
+text = "CASO RESOLVIDO!"
+horizontal_alignment = 1
+
+[node name="GatoFinal" type="TextureRect" parent="Resolvido/Painel/Margem/Coluna"]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture = ExtResource("6_gato")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="FalaTutor" type="Label" parent="Resolvido/Painel/Margem/Coluna"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/line_spacing = 10
+theme_override_fonts/font = ExtResource("5_fonte")
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Dica" type="Label" parent="Resolvido/Painel/Margem/Coluna"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.659, 0.835, 0.729, 1)
+theme_override_fonts/font = ExtResource("5_fonte")
+theme_override_font_sizes/font_size = 12
+text = "ENTER  para continuar"
+horizontal_alignment = 1

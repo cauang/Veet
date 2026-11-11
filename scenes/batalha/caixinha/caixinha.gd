@@ -48,6 +48,27 @@ func _ready() -> void:
 
 	if iniciar_automatico:
 		emissor.iniciar_fase()
+	else:
+		# Modo por turnos: a batalha chama iniciar_esquiva() quando for a vez do paciente.
+		_ativo = false
+		patinha.visible = false
+
+
+## Comeca a fase de esquiva (turno do paciente) no modo por turnos.
+func iniciar_esquiva(padrao := "", duracao := -1.0, intensidade := 1.0) -> void:
+	_ativo = true
+	_invulneravel = 0.0
+	patinha.modulate.a = 1.0
+	patinha.visible = true
+	patinha.position = _limites.get_center()
+	emissor.iniciar_fase(padrao, duracao, intensidade)
+
+
+func encerrar_esquiva() -> void:
+	_ativo = false
+	patinha.visible = false
+	emissor.parar_fase()
+	hud_saude.esconder_tempo()
 
 
 func _physics_process(delta: float) -> void:
@@ -122,22 +143,14 @@ func _on_fase_terminou() -> void:
 	fase_sobrevivida.emit()
 	hud_saude.esconder_tempo()
 
-	# Dentro do fluxo do jogo, sobreviver a fase encerra a batalha e avanca.
-	# Rodando a cena solta (F6), ela repete a fase para testar a esquiva.
-	if GerenciadorCenas.em_fluxo():
-		hud_saude.mostrar_fase("Fase superada!", "")
-		await get_tree().create_timer(1.6).timeout
+	# Rodando a cena solta (F6) a fase repete para testar a esquiva. Embutida na
+	# batalha (iniciar_automatico = false) ela so avisa que o turno acabou.
+	if iniciar_automatico and repetir_fase:
+		await get_tree().create_timer(1.2).timeout
 		if _ativo:
-			_ativo = false
-			GerenciadorCenas.avancar()
-		return
-
-	if not repetir_fase:
-		return
-
-	await get_tree().create_timer(1.2).timeout
-	if _ativo:
-		emissor.iniciar_fase()
+			emissor.iniciar_fase()
+	else:
+		_ativo = false
 
 
 func _on_vida_zerada() -> void:

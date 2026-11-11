@@ -44,7 +44,9 @@ func definir_limites(area: Rect2) -> void:
 	_limites = area
 
 
-func iniciar_fase() -> void:
+## `forcar_id`: usa esse padrao (em vez do rodizio). `duracao` > 0 troca o tempo da fase.
+## `intensidade` > 1 deixa os projeteis mais rapidos e frequentes (ex.: estresse alto).
+func iniciar_fase(forcar_id := "", duracao := -1.0, intensidade := 1.0) -> void:
 	if _fase_ativa:
 		return
 
@@ -57,13 +59,19 @@ func iniciar_fase() -> void:
 
 	var id: String = padroes[_indice_padrao % padroes.size()]
 	_indice_padrao = (_indice_padrao + 1) % padroes.size()
+	if forcar_id != "":
+		id = forcar_id
 	_atualizar_dificuldade()
+	_multiplicador_velocidade *= intensidade
+	_multiplicador_intervalo = maxf(_multiplicador_intervalo / intensidade, 0.45)
 
 	var definicao := _carregar_definicao(id)
 	if definicao.is_empty():
 		definicao = _definicao_padrao()
 
 	_duracao_atual = maxf(1.0, float(definicao.get("duracao", duracao_fase)))
+	if duracao > 0.0:
+		_duracao_atual = duracao
 	_preparar_emissoes(definicao)
 	_tempo_restante = _duracao_atual
 	_fase_ativa = true

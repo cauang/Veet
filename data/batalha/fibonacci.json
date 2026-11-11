@@ -1,0 +1,76 @@
+{
+  "id": "fibonacci",
+  "paciente": "fibonacci",
+  "nome": "Fibonacci",
+  "tutor": "Prof. Euler",
+  "texto_estados": {
+    "neutro": "* Fibonacci observa você com atenção.",
+    "assustado": "* Fibonacci recua e esconde as orelhas.",
+    "dor": "* Fibonacci solta um miado baixo.",
+    "aliviado": "* Fibonacci ronrona baixinho.",
+    "curado": "* Fibonacci estica as patas e boceja."
+  },
+  "acoes": {
+    "analisar": {
+      "titulo": "Analisar",
+      "opcoes": [
+        { "id": "barriga", "rotulo": "Palpar a barriga", "progresso": 15, "estresse": 1,
+          "pista": "Dor à palpação abdominal", "padrao": "ondas_dor", "duracao": 9,
+          "texto": "* Você apalpa a barriga com cuidado. Ele se encolhe.\n* Pista: dor à palpação abdominal." },
+        { "id": "apetite", "rotulo": "Ver o apetite", "progresso": 15, "estresse": 0,
+          "pista": "Apetite a 25% do normal", "padrao": "ondas_dor", "duracao": 8,
+          "texto": "* A tigela está quase cheia.\n* Pista: apetite a 25% do normal." },
+        { "id": "tutor", "rotulo": "Falar com o tutor", "progresso": 15, "estresse": 0,
+          "pista": "Foi visto nos arbustos do Bloco T", "padrao": "ondas_dor", "duracao": 8,
+          "texto": "* O Prof. Euler lembra: \"Ele foi visto nos arbustos do Bloco T.\"\n* Pista: possível ingestão de algo no jardim." }
+      ]
+    },
+    "carinho": {
+      "titulo": "Carinho",
+      "opcoes": [
+        { "id": "voz", "rotulo": "Falar baixinho", "progresso": 5, "estresse": -2, "padrao": "ondas_dor", "duracao": 6,
+          "texto": "* Você fala baixinho. As orelhas dele relaxam." },
+        { "id": "luz", "rotulo": "Apagar a luz", "progresso": 5, "estresse": -2, "padrao": "ondas_dor", "duracao": 6,
+          "texto": "* A sala fica mais escura. Ele respira fundo." },
+        { "id": "petisco", "rotulo": "Oferecer petisco", "progresso": 5, "estresse": -1, "padrao": "ondas_dor", "duracao": 6,
+          "texto": "* Você oferece um petisco. Ele cheira, hesita e recusa.\n* O apetite realmente está baixo." }
+      ]
+    },
+    "diagnostico": {
+      "titulo": "Diagnóstico",
+      "requer_pistas": 2,
+      "texto_sem_pistas": "* Você ainda tem poucas pistas.\n* Use ANALISAR antes de fechar um diagnóstico.",
+      "opcoes": [
+        { "id": "corpo_estranho", "rotulo": "Corpo estranho", "correta": true, "progresso": 20, "estresse": 0,
+          "padrao": "ondas_dor", "duracao": 8,
+          "texto": "* As pistas apontam para ingestão de corpo estranho.\n* Diagnóstico registrado no Prontuário." },
+        { "id": "gastroenterite", "rotulo": "Gastroenterite", "correta": false, "progresso": 0, "estresse": 2,
+          "padrao": "ondas_dor", "duracao": 9,
+          "texto": "* Não combina com tudo o que você viu.\n* O paciente fica mais tenso." },
+        { "id": "constipacao", "rotulo": "Constipação", "correta": false, "progresso": 0, "estresse": 2,
+          "padrao": "ondas_dor", "duracao": 9,
+          "texto": "* Não explica o apetite nem os arbustos.\n* O paciente fica mais tenso." }
+      ]
+    },
+    "tratamento": {
+      "titulo": "Tratamento",
+      "requer_diagnostico": true,
+      "texto_sem_diagnostico": "* Ainda não há um diagnóstico fechado.\n* Use DIAGNÓSTICO primeiro.",
+      "opcoes": [
+        { "id": "radiografia", "rotulo": "Radiografia + remoção", "correto": true, "progresso": 20, "estresse": 0,
+          "padrao": "ondas_dor", "duracao": 12, "intensidade": 1.25,
+          "texto": "* Radiografia, remoção do corpo estranho e analgesia.\n* O tratamento deu certo!" },
+        { "id": "antiemetico", "rotulo": "Só antiemético", "correto": false, "progresso": 0, "estresse": 2,
+          "padrao": "rajada_diagonal", "duracao": 12, "intensidade": 1.25,
+          "texto": "* O antiemético mascara o quadro.\n* O paciente piora: surgem bolinhas de ração (perda de apetite)." },
+        { "id": "dieta", "rotulo": "Dieta leve", "correto": false, "progresso": 0, "estresse": 2,
+          "padrao": "rajada_diagonal", "duracao": 12, "intensidade": 1.25,
+          "texto": "* Dieta leve sem investigar atrasa o cuidado.\n* O paciente piora: surgem bolinhas de ração (perda de apetite)." }
+      ]
+    }
+  },
+  "fim": {
+    "texto": "* O quadro foi resolvido. Fibonacci está aliviado.",
+    "fala_tutor": "Excelente. O sistema voltou a operar dentro dos parâmetros."
+  }
+}
