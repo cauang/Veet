@@ -194,6 +194,7 @@ BRACO = {
     "tchau1":  ((-8, 4), (-10, -7)),
     "tchau2":  ((-8, 4), (-5, -8)),
     "prancha": ((-3, 10), (-1, 15)),
+    "sobe":    ((-3, 9), (-3, 16)),   # tutor levanta de leve a caixa que carrega
 }
 
 # quadros de cada animacao: bob (torso/cabeca), boca, pernas (elevacao esq,dir),
@@ -588,6 +589,12 @@ def desenhar(pid, q, largura=W, altura=H):
 
     # --- bracos da frente
     be, bd = q["be"], q["bd"]
+    if d["pets"]:
+        # Quem carrega caixas nao tem mao livre para gesticular: ao falar/acenar,
+        # levanta de leve as caixas, alternando os lados.
+        gesticula = bd in ("gesto1", "gesto2", "tchau1", "tchau2")
+        bd = "sobe" if bd in ("gesto1", "tchau1") else ("baixo" if gesticula else bd)
+        be = "sobe" if (gesticula and bd == "baixo") else be
     manga = d["manga"]
 
     def braco(lado, pose):
@@ -627,26 +634,19 @@ def desenhar(pid, q, largura=W, altura=H):
         m = braco(0, be)
     braco(1, bd)
 
-    # --- caixas de transporte / itens dos tutores
+    # --- caixas de transporte / itens dos tutores (sempre nas maos, nunca no chao)
     if d["pets"]:
-        gesto = bd in ("gesto1", "gesto2", "tchau1", "tchau2")
         hx, hy = m
         pet_a, pet_b = d["pets"]
         caixa_gato(f, hx - 7, hy + 3, pet_a)
         f.parte(m_elipse(hx, hy, 3, 3), pele)
-        if gesto:   # item da mao direita vai ao chao para liberar o braco
-            if pet_b == "racao":
-                saco_racao(f, 45, 76)
-            else:
-                caixa_gato(f, 45, 76, pet_b)
+        (_, (mx2, my2)) = BRACO[bd]
+        hx2, hy2 = 43 - mx2, 41 + bob + my2
+        if pet_b == "racao":
+            saco_racao(f, hx2 - 8, hy2 + 3)
         else:
-            (_, (mx2, my2)) = BRACO[bd]
-            hx2, hy2 = 43 - mx2, 41 + bob + my2
-            if pet_b == "racao":
-                saco_racao(f, hx2 - 8, hy2 + 3)
-            else:
-                caixa_gato(f, hx2 - 8, hy2 + 3, pet_b)
-            f.parte(m_elipse(hx2, hy2, 3, 3), pele)
+            caixa_gato(f, hx2 - 8, hy2 + 3, pet_b)
+        f.parte(m_elipse(hx2, hy2, 3, 3), pele)
     if pid == "euler":
         f.parte(m_poly([(31, 40 + bob), (34, 40 + bob), (35, 52 + bob), (32, 57 + bob), (30, 52 + bob)]), VERMELHO)
         for yy in (44, 48, 52):

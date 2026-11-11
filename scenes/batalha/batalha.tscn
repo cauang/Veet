@@ -97,7 +97,7 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 6
 
 [node name="Menu" type="GridContainer" parent="."]
 unique_name_in_owner = true

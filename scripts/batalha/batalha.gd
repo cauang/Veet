@@ -177,7 +177,7 @@ func _unhandled_input(evento: InputEvent) -> void:
 				_mover_sub(1)
 			elif evento.is_action_pressed("ui_accept"):
 				_escolher_opcao(_opcoes[_indice_sub])
-			elif evento.is_action_pressed("ui_cancel"):
+			elif evento.is_action_pressed("ui_cancel") or (evento is InputEventMouseButton and evento.pressed and evento.button_index == MOUSE_BUTTON_RIGHT):
 				_voltar_ao_menu(String(caso["texto_estados"][_estado_visual()]))
 			else:
 				return
@@ -235,6 +235,26 @@ func _mover_menu(novo_indice: int) -> void:
 	_marcar_menu()
 
 
+func _on_opcao_hover(i: int) -> void:
+	if estado == Estado.SUBMENU and i != _indice_sub:
+		_indice_sub = i
+		_som("hover")
+		_marcar_sub()
+
+
+func _on_opcao_gui_input(evento: InputEvent, i: int) -> void:
+	if estado != Estado.SUBMENU:
+		return
+	if evento is InputEventMouseButton and evento.pressed:
+		if evento.button_index == MOUSE_BUTTON_LEFT:
+			_indice_sub = i
+			_escolher_opcao(_opcoes[i])
+			accept_event()
+		elif evento.button_index == MOUSE_BUTTON_RIGHT:
+			_voltar_ao_menu(String(caso["texto_estados"][_estado_visual()]))
+			accept_event()
+
+
 func _mover_sub(passo: int) -> void:
 	_indice_sub = wrapi(_indice_sub + passo, 0, _opcoes.size())
 	_som("hover")
@@ -285,7 +305,15 @@ func _montar_lista() -> void:
 		l.add_theme_font_override("font", FONTE)
 		l.add_theme_font_size_override("font_size", 14)
 		l.add_theme_color_override("font_color", COR_USADO if feito and _acao in ["analisar", "carinho"] else Color.WHITE)
-		l.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		# Mouse: passar por cima seleciona, clicar escolhe (alem das setas e do ENTER).
+		l.mouse_filter = Control.MOUSE_FILTER_STOP
+		l.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		l.custom_minimum_size = Vector2(0, 32)   # alvo de clique confortavel
+		l.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		l.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+		var indice := _rotulos_sub.size()
+		l.mouse_entered.connect(_on_opcao_hover.bind(indice))
+		l.gui_input.connect(_on_opcao_gui_input.bind(indice))
 		lista.add_child(l)
 		_rotulos_sub.append(l)
 
